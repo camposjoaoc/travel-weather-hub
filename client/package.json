@@ -10,8 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/node": "^22.13.5",
     "axios": "^1.8.1",
+    "bootstrap": "^5.3.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "nodemon": "^3.1.9",
     "react": "^19.0.0",
+    "react-bootstrap-validation": "^0.1.11",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
@@ -19,12 +26,19 @@
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
     "eslint": "^9.21.0",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^15.15.0",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^3.4.17",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.24.1",
     "vite": "^6.2.0"
-  }
+  },
+  "description": "The **Local Travel & Weather Dashboard** is a web application where users can enter their address and view essential travel-related information, such as:",
+  "main": "eslint.config.js",
+  "author": "",
+  "license": "ISC"
 }
