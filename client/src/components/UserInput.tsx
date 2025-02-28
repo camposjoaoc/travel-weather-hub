@@ -1,22 +1,19 @@
+import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "../styles/userInput.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import { useEffect ,useState} from "react";
+import { useEffect} from "react";
 import Axios from "Axios";
 
 
-
 const UserInput = () => {
-  
-    const [adresses,setAdresses] = useState({})
       useEffect(() => {
     Axios.get(
       `http://localhost:8000/api`  
     ).then((res) => {
       console.log(res.data);
-      setAdresses(res.data.results.address_components);
     });
   }, []);
 
@@ -35,15 +32,7 @@ const UserInput = () => {
           Search
         </Button>
       </InputGroup>
-      <div>
-       
-      {adresses.map((address, id) => (
-        <div key={id}>
-          {address.results}
-        </div>
-      ))}
-        
-      </div>
+    
        
     </>
   );
