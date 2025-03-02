@@ -16,10 +16,12 @@ app.get("/", (req, res) => {
   res.json("hi");
 });
 
-app.get("/api", (req, res) => {
+app.get("/api/:address", (req, res) => {
+  const address = req.params.address;
+  
   const options = {
     method: "GET",
-    url: "https://geokeo.com/geocode/v1/search.php?q=sweden&api=cfe7350ecacc5378dc0636bd331e3bda",
+    url: `https://geokeo.com/geocode/v1/search.php?q=${address}&api=cfe7350ecacc5378dc0636bd331e3bda`,
   };
   axios
     .request(options)
