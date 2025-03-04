@@ -19,7 +19,10 @@ h1{
 .results {
     /* border: 2px solid; */
     text-align: center;
+    /* display: none; */
 }
 .noResults{
     display: none;
+    text-align: center;
+
 }
