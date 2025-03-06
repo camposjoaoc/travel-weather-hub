@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "../styles/userInput.css";
-import Button from "react-bootstrap/Button";
+// import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Axios from "axios";
@@ -9,24 +9,43 @@ import Axios from "axios";
 const UserInput: React.FC = () => {
   const [search, setSearch] = useState<string>("");
   const [addresses, setAddresses] = useState<any>(null);
+  const [lat, setLat] = useState<number | string | any>("");
+  const [lng, setLng] = useState<number | string | any>("");
+
+  const disabled1 = search ? true : false;
+  const disabled2 = lat || lng ? true : false;
+
   const myRef = useRef(null);
 
   useEffect(() => {
-    Axios.get(`http://localhost:8000/api/:${search}`)
-      .then((res) => {
-        console.log(res.data.results[1].formatted_address);
-
-        setAddresses(res.data.results[1]);
-      })
-      .catch((error) => {
-        console.error("Error fetching data: ", error);
-      });
+    if (search) {
+      Axios.get(`http://localhost:8000/api/${search}`)
+        .then((res) => {
+          setAddresses(res.data.results[1]);
+        })
+        .catch((error) => {
+          console.error("Error fetching data: ", error);
+        });
+    }
   }, [search]);
 
+  useEffect(() => {
+    if (lat && lng) {
+      Axios.get(`http://localhost:8000/ap/${lat}/${lng}`)
+        .then((res) => {
+          setLat(res.data.results[1].formatted_address);
+          setLng(res.data.results[1].formatted_address);
+        })
+        .catch((error) => {
+          console.error("Error fetching data: ", error);
+        });
+    }
+  }, [lat, lng]);
   return (
     <>
       <h1 className="title">Local Travel & Weather Dashboard</h1>
-
+      <h2 className="searchTitle">Search by address, country, or city</h2>
+      {/* search by address */}
       <InputGroup className="mb-3">
         <Form.Control
           className="inputSearch"
@@ -34,11 +53,13 @@ const UserInput: React.FC = () => {
           aria-label=""
           aria-describedby=""
           value={search}
+          placeholder="Enter an address, country, city"
           onChange={(e) => {
             setSearch(e.target.value);
           }}
+          disabled={disabled2}
         />
-        <Button
+        {/* <Button
           variant="outline-secondary"
           id="button-addon2"
           onClick={() => {
@@ -47,7 +68,37 @@ const UserInput: React.FC = () => {
           }}
         >
           Search
-        </Button>
+        </Button> */}
+      </InputGroup>
+
+      {/* search by lat & lng  */}
+      <h2 className="searchTitle">Search By latitude and longitude</h2>
+      <InputGroup className="lat-lng">
+        {/* <InputGroup.Text>First and last name</InputGroup.Text> */}
+        <label htmlFor="lat">Latitude</label>
+        <Form.Control
+          className="lat"
+          id="lat"
+          aria-label="Latitude"
+          value={lat}
+          onChange={(e) => {
+            setLat(e.target.value);
+          }}
+          placeholder="latitude"
+          disabled={disabled1}
+        />
+        <label htmlFor="lng">Longitude</label>
+        <Form.Control
+          className="lng"
+          id="lng"
+          aria-label="Longitude"
+          value={lng}
+          onChange={(e) => {
+            setLng(e.target.value);
+          }}
+          placeholder="longitude"
+          disabled={disabled1}
+        />
       </InputGroup>
 
       <div className={search === "" ? "noResults" : "results"} ref={myRef}>
@@ -87,6 +138,10 @@ const UserInput: React.FC = () => {
             View Larger Map
           </a>
         </small>
+      </div>
+      {/* Lat and Lng */}
+      <div>
+        <h3 className={lat && lng ? "latAndLng" : "noLatOrLng"}>{lat}</h3>
       </div>
     </>
   );
