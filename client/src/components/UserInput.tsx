@@ -6,7 +6,11 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Axios from "axios";
 
-const UserInput: React.FC = () => {
+interface UserInputProps {
+  onCityChange: (city: string) => void;
+}
+
+const UserInput: React.FC<UserInputProps> = ({ onCityChange }) => {
   const [search, setSearch] = useState<string>("");
   const [addresses, setAddresses] = useState<any>(null);
   const [lat, setLat] = useState<number | string | any>("");
@@ -16,6 +20,12 @@ const UserInput: React.FC = () => {
   const disabled2 = lat || lng ? true : false;
 
   const myRef = useRef(null);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newCity = e.target.value;
+    setSearch(newCity);
+    onCityChange(newCity);
+  };
 
   useEffect(() => {
     if (search) {
@@ -54,9 +64,7 @@ const UserInput: React.FC = () => {
           aria-describedby=""
           value={search}
           placeholder="Enter an address, country, city"
-          onChange={(e) => {
-            setSearch(e.target.value);
-          }}
+          onChange={handleInputChange}
           disabled={disabled2}
         />
         {/* <Button

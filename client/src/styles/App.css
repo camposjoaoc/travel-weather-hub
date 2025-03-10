@@ -1,0 +1,37 @@
+/* Root container for the app */
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    margin: 10px auto;
+    width: 100%;
+    max-width: 1600px;
+    height: auto;
+}
+
+/* Desktop styles: large screens (min-width: 1025px) */
+@media screen and (min-width: 1025px) {
+    .container {
+        max-width: 1400px;
+        margin: 30px auto;
+    }
+}
+
+/* Tablet styles: medium screens (768px to 1024px) */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .container {
+        max-width: 1000px;
+        margin: 15px auto;
+    }
+}
+
+/* Mobile styles: small screens (max-width: 767px) */
+@media screen and (max-width: 767px) {
+    .container {
+        max-width: 100%;
+        margin: 10px auto;
+    }
+}
