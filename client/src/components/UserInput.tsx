@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "../styles/userInput.css";
-// import Button from "react-bootstrap/Button";
+import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Axios from "axios";
@@ -27,7 +27,18 @@ const UserInput: React.FC<UserInputProps> = ({ onCityChange }) => {
     onCityChange(newCity);
   };
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   if (search) {
+  //     Axios.get(`http://localhost:8000/api/${search}`)
+  //       .then((res) => {
+  //         setAddresses(res.data.results[1]);
+  //       })
+  //       .catch((error) => {
+  //         console.error("Error fetching data: ", error);
+  //       });
+  //   }
+  // }, [search]);
+  const handleSearchClick = () => {
     if (search) {
       Axios.get(`http://localhost:8000/api/${search}`)
         .then((res) => {
@@ -37,7 +48,9 @@ const UserInput: React.FC<UserInputProps> = ({ onCityChange }) => {
           console.error("Error fetching data: ", error);
         });
     }
-  }, [search]);
+    myRef.current.style.display = "block";
+  };
+
 
   useEffect(() => {
     if (lat && lng) {
@@ -54,7 +67,7 @@ const UserInput: React.FC<UserInputProps> = ({ onCityChange }) => {
   return (
     <>
       <h1 className="title">Local Travel & Weather Dashboard</h1>
-      <h2 className="searchTitle">Search by address, country, or city</h2>
+      {/* <h2 className="searchTitle">Search by address, country, or city</h2> */}
       {/* search by address */}
       <InputGroup className="mb-3">
         <Form.Control
@@ -67,24 +80,28 @@ const UserInput: React.FC<UserInputProps> = ({ onCityChange }) => {
           onChange={handleInputChange}
           disabled={disabled2}
         />
-        {/* <Button
+        <Button
           variant="outline-secondary"
           id="button-addon2"
-          onClick={() => {
-            // if (search === "") myRef.current.style.display = "none";
-            // else myRef.current.style.display = "block";
-          }}
+          // onClick={() => void{
+          //   // if (search === "") myRef.current.style.display = "none";
+          //   // else myRef.current.style.display = "block";
+          //   // myRef.current.style.display = "block";
+          //   // setSearch("")
+
+          // }}
+          onClick={handleSearchClick}
         >
           Search
-        </Button> */}
+        </Button>
       </InputGroup>
 
       {/* search by lat & lng  */}
-      <h2 className="searchTitle">Search By latitude and longitude</h2>
-      <InputGroup className="lat-lng">
+      {/* <h2 className="searchTitle">Search By latitude and longitude</h2> */}
+      {/* <InputGroup className="lat-lng"> */}
         {/* <InputGroup.Text>First and last name</InputGroup.Text> */}
-        <label htmlFor="lat">Latitude</label>
-        <Form.Control
+        {/* <label htmlFor="lat">Latitude</label> */}
+        {/* <Form.Control
           className="lat"
           id="lat"
           aria-label="Latitude"
@@ -107,30 +124,30 @@ const UserInput: React.FC<UserInputProps> = ({ onCityChange }) => {
           placeholder="longitude"
           disabled={disabled1}
         />
-      </InputGroup>
+      </InputGroup> */}
 
-      <div className={search === "" ? "noResults" : "results"} ref={myRef}>
+      <div className= "results" ref={myRef}>
         {/* {addresses?.geometry?.location?.lat && (
           <h2>Country : {addresses.address_components.country}</h2>
         )} */}
-        <h2> Country : {addresses?.address_components?.country}</h2>
+        {/* <h2 > Country : {addresses?.address_components?.country}</h2> */}
 
         {/* {addresses?.geometry?.location?.lat && (
           <h2>City : {addresses.address_components.name}</h2>
         )} */}
 
-        <h2> City: {addresses?.address_components?.name}</h2>
+        {/* <h2> City: {addresses?.address_components?.name}</h2> */}
 
         {/* {addresses?.geometry?.location?.lat && (
           <h1>lat :{parseFloat(addresses.geometry.location.lat)}</h1>
         )} */}
-        <h2> lat: {addresses?.geometry?.location?.lat}</h2>
+        {/* <h2> lat: {addresses?.geometry?.location?.lat}</h2> */}
         {/* 
         {addresses?.geometry?.location?.lat && (
           <h1>lng : {parseFloat(addresses.geometry.location.lng)}</h1>
         )} */}
 
-        <h2> lat: {addresses?.geometry?.location?.lng}</h2>
+        {/* <h2> lat: {addresses?.geometry?.location?.lng}</h2> */}
 
         <iframe
           width="425"
@@ -147,6 +164,10 @@ const UserInput: React.FC<UserInputProps> = ({ onCityChange }) => {
           </a>
         </small>
       </div>
+
+
+
+
       {/* Lat and Lng */}
       <div>
         <h3 className={lat && lng ? "latAndLng" : "noLatOrLng"}>{lat}</h3>
@@ -156,3 +177,5 @@ const UserInput: React.FC<UserInputProps> = ({ onCityChange }) => {
 };
 
 export default UserInput;
+
+// className={search === "" ? "noResults" : "results"}

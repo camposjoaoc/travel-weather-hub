@@ -10,15 +10,16 @@
 .inputSearch {
   max-width: 500px;
   width: 100%;
+  text-align: center;
+
   /* margin: auto; */
 }
 h1 {
   /* color: red */
 }
 .results {
-  /* border: 2px solid; */
   text-align: center;
-  /* display: none; */
+  display: none;
 }
 .noResults {
   display: none;
