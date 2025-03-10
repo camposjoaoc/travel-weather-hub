@@ -59,4 +59,27 @@ app.get("/ap/:lat/:lng", (req, res) => {
     });
 });
 
+
+//WeatherAPI
+app.get("/forecast", async (req, res) => {
+  const API_KEY = process.env.OPENWEATHER_API_KEY;
+  const API_ID = process.env.OPENWEATHER_API_ID;
+  const { city } = req.query;
+
+  if (!city) {
+    return res.status(400).json({ error: "City is obligatory" });
+  }
+
+  try {
+    const response = await axios.get(
+      `https://api.openweathermap.org/data/2.5/forecast?q=${city}&id=${API_ID}&appid=${API_KEY}&units=metric&lang=en`
+    );
+    console.log(response);
+    res.json(response.data);
+  } catch (error) {
+    console.error("Erro in the API OpenWeather:", error.response?.data || error.message);
+    res.status(500).json({ error: "Error - No weatcher fund" });
+  }
+});
+
 app.listen(8000, () => console.log(`backend server running on port ${PORT}`));

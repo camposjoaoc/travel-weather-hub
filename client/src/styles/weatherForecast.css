@@ -1,0 +1,30 @@
+
+.title {
+    color: gray;
+}
+.weather-table-container {
+    width: 100px;
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+    justify-content: center;
+}
+
+.weather-table {
+    font-size: 10px;
+}
+
+.weather-table th,
+.weather-table td {
+    padding: 6px;
+    text-align: center;
+}
+
+.weather-table thead {
+    background-color: gray;
+}
+
+.weather-icon {
+    width: 40px;
+    height: 40px;
+}
