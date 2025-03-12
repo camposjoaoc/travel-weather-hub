@@ -71,6 +71,11 @@ const UserInput: React.FC<UserInputProps> = ({ onCityChange }) => {
       {/* search by address */}
       <InputGroup className="mb-3">
         <Form.Control
+          onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
+            if (e.key === "Enter") {
+              handleSearchClick();
+            }
+          }}
           className="inputSearch"
           placeholder=""
           aria-label=""
