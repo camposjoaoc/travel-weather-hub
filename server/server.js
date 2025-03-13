@@ -24,13 +24,13 @@ app.get("/", (req, res) => {
 
 //Address
 app.get("/api/:address", (req, res) => {
-  const LOCATION_API_KEY = process.env.OPENWEATHER_API_KEY;
+  const LOCATION_API_KEY = process.env.LOCATION_API_KEY;
 
   const address = req.params.address;
 
   const options = {
     method: "GET",
-    url: `https://geokeo.com/geocode/v1/search.php?q=${address}&api=$ebcb220f665c23f17b45f4c40cb42fc4`,
+    url: `https://geokeo.com/geocode/v1/search.php?q=${address}&api=ebcb220f665c23f17b45f4c40cb42fc4`,
   };
   axios
     .request(options)
