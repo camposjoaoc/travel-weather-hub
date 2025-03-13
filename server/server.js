@@ -24,11 +24,13 @@ app.get("/", (req, res) => {
 
 //Address
 app.get("/api/:address", (req, res) => {
+  const LOCATION_API_KEY = process.env.OPENWEATHER_API_KEY;
+
   const address = req.params.address;
 
   const options = {
     method: "GET",
-    url: `https://geokeo.com/geocode/v1/search.php?q=${address}&api=ebcb220f665c23f17b45f4c40cb42fc4`,
+    url: `https://geokeo.com/geocode/v1/search.php?q=${address}&api=$ebcb220f665c23f17b45f4c40cb42fc4`,
   };
   axios
     .request(options)
@@ -41,23 +43,23 @@ app.get("/api/:address", (req, res) => {
 });
 
 //Lat & Lng
-app.get("/ap/:lat/:lng", (req, res) => {
-  const lat = req.params.lat;
-  const lng = req.params.lng;
+// app.get("/ap/:lat/:lng", (req, res) => {
+//   const lat = req.params.lat;
+//   const lng = req.params.lng;
 
-  const options2 = {
-    method: "GET",
-    url: `https://geokeo.com/geocode/v1/reverse.php?lat=${lat}&lng=${lng}&api=ebcb220f665c23f17b45f4c40cb42fc4`,
-  };
-  axios
-    .request(options2)
-    .then((response) => {
-      res.json(response.data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-});
+//   const options2 = {
+//     method: "GET",
+//     url: `https://geokeo.com/geocode/v1/reverse.php?lat=${lat}&lng=${lng}&api=ebcb220f665c23f17b45f4c40cb42fc4`,
+//   };
+//   axios
+//     .request(options2)
+//     .then((response) => {
+//       res.json(response.data);
+//     })
+//     .catch((error) => {
+//       console.log(error);
+//     });
+// });
 
 
 //WeatherAPI

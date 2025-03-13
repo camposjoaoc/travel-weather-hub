@@ -45,30 +45,50 @@ const UserInput: React.FC<UserInputProps> = ({ onCityChange }) => {
   //   }
   // }, [search]);
   const handleSearchClick = () => {
-    if (search) {
-      Axios.get(`http://localhost:8000/api/${search}`)
-        .then((res) => {
-          setAddresses(res.data.results[1]);
-        })
-        .catch((error) => {
-          console.error("Error fetching data: ", error);
-        });
-    }
-    myRef.current.style.display = "block";
-  };
+    // if (search) {
+    //   Axios.get(`http://localhost:8000/api/${search}`)
+    //     .then((res) => {
+    //       setAddresses(res.data.results[1]);
+    //     })
+    //     .catch((error) => {
+    //       console.error("Error fetching data: ", error);
+    //     });
+    // }
+    // myRef.current.style.display = "block";
 
-  useEffect(() => {
-    if (lat && lng) {
-      Axios.get(`http://localhost:8000/ap/${lat}/${lng}`)
-        .then((res) => {
-          setLat(res.data.results[1].formatted_address);
-          setLng(res.data.results[1].formatted_address);
-        })
-        .catch((error) => {
+    if (search) {
+      const location = async () => {
+        try {
+          const response = await fetch(`http://localhost:8000/api/${search}`);
+          const data = await response.json();
+          console.log(data);
+          setAddresses(data.results[1]);
+        } catch (error) {
           console.error("Error fetching data: ", error);
-        });
-    }
-  }, [lat, lng]);
+
+        }
+      };
+
+      location();
+
+ 
+  }
+    myRef.current.style.display = "block";
+
+}
+
+  // useEffect(() => {
+  //   if (lat && lng) {
+  //     Axios.get(`http://localhost:8000/ap/${lat}/${lng}`)
+  //       .then((res) => {
+  //         setLat(res.data.results[1].formatted_address);
+  //         setLng(res.data.results[1].formatted_address);
+  //       })
+  //       .catch((error) => {
+  //         console.error("Error fetching data: ", error);
+  //       });
+  //   }
+  // }, [lat, lng]);
   return (
     <>
     <div className="header">
@@ -184,7 +204,7 @@ const UserInput: React.FC<UserInputProps> = ({ onCityChange }) => {
 
       {/* Lat and Lng */}
       <div>
-        <h3 className={lat && lng ? "latAndLng" : "noLatOrLng"}>{lat}</h3>
+        {/* <h3 className={lat && lng ? "latAndLng" : "noLatOrLng"}>{lat}</h3> */}
       </div>
     </>
   );
