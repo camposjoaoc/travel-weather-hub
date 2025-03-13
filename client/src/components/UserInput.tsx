@@ -1,10 +1,16 @@
+//Hooks
 import React, { useState, useEffect, useRef } from "react";
+//Bootstrap
 import "bootstrap/dist/css/bootstrap.css";
-import "../styles/userInput.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
+//Style
+import "../styles/userInput.css";
+//Packages
 import Axios from "axios";
+//Images
+import logo from "../assets/img/logo.jpg"
 
 interface UserInputProps {
   onCityChange: (city: string) => void;
@@ -51,7 +57,6 @@ const UserInput: React.FC<UserInputProps> = ({ onCityChange }) => {
     myRef.current.style.display = "block";
   };
 
-
   useEffect(() => {
     if (lat && lng) {
       Axios.get(`http://localhost:8000/ap/${lat}/${lng}`)
@@ -66,6 +71,9 @@ const UserInput: React.FC<UserInputProps> = ({ onCityChange }) => {
   }, [lat, lng]);
   return (
     <>
+    <div className="header">
+    <img className="logo"src={logo} />
+    <div className="searchInput">
       <h1 className="title">Local Travel & Weather Dashboard</h1>
       {/* <h2 className="searchTitle">Search by address, country, or city</h2> */}
       {/* search by address */}
@@ -100,13 +108,17 @@ const UserInput: React.FC<UserInputProps> = ({ onCityChange }) => {
           Search
         </Button>
       </InputGroup>
+      <hr />
+      </div>
+      </div>
+
 
       {/* search by lat & lng  */}
       {/* <h2 className="searchTitle">Search By latitude and longitude</h2> */}
       {/* <InputGroup className="lat-lng"> */}
-        {/* <InputGroup.Text>First and last name</InputGroup.Text> */}
-        {/* <label htmlFor="lat">Latitude</label> */}
-        {/* <Form.Control
+      {/* <InputGroup.Text>First and last name</InputGroup.Text> */}
+      {/* <label htmlFor="lat">Latitude</label> */}
+      {/* <Form.Control
           className="lat"
           id="lat"
           aria-label="Latitude"
@@ -131,7 +143,7 @@ const UserInput: React.FC<UserInputProps> = ({ onCityChange }) => {
         />
       </InputGroup> */}
 
-      <div className= "results" ref={myRef}>
+      <div className="results" ref={myRef}>
         {/* {addresses?.geometry?.location?.lat && (
           <h2>Country : {addresses.address_components.country}</h2>
         )} */}
@@ -169,9 +181,6 @@ const UserInput: React.FC<UserInputProps> = ({ onCityChange }) => {
           </a>
         </small>
       </div>
-
-
-
 
       {/* Lat and Lng */}
       <div>
