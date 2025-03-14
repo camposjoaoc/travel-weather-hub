@@ -4,24 +4,32 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { WeatherForecastData, WeatherForecastProps } from "../types/WeatherForecastData";
 
 const WeatherForecast: React.FC<WeatherForecastProps> = ({ city }) => {
+    const [selectedCity, setSelectedCity] = useState<string | null>(null);
     const [forecast, setForecast] = useState<WeatherForecastData | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
     const [showForecast, setShowForecast] = useState<boolean>(false);
 
-    // Function to format the date into weekday names (Monday, Tuesday, etc.)
     const formatDateToWeekday = (dateString: string): string => {
         const date = new Date(dateString);
         return date.toLocaleDateString("en-US", { weekday: "long" });
     };
 
     useEffect(() => {
-        if (!city) return;
+        if (city) {
+            setSelectedCity(city);
+        }
+    }, [city]);
+
+    useEffect(() => {
+        if (!selectedCity) return;
 
         setLoading(true);
         setError(null);
+        setShowForecast(false);
 
-        axios.get(`http://localhost:8000/forecast?city=${city}`)
+        axios
+            .get(`http://localhost:8000/forecast?city=${selectedCity}`)
             .then((response) => {
                 const forecasts = response.data.list;
                 const uniqueDays = new Set<string>();
@@ -39,25 +47,24 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ city }) => {
                 }
 
                 setForecast({ ...response.data, list: filteredForecast });
-                // Wait 5 seconds for forecast
-                setTimeout(() => {
-                    setShowForecast(true);
-                }, 5000);
+                setShowForecast(true);
             })
             .catch(() => setError("This is not a valid city name. Waiting for city..."))
             .finally(() => setLoading(false));
-    }, [city]);
+    }, [selectedCity]);
 
     return (
         <div className="container mt-4">
-            <h3 className="title text-center">Local Weather </h3>
+            <h3 className="title text-center">Local Weather</h3>
 
             {loading && <p className="text-center text-secondary">Loading...</p>}
             {error && <p className="text-danger text-center">{error}</p>}
 
             <div className="mt-4">
                 <h3 className="text-center">
-                    {city ? `Weather forecast for ${city.charAt(0).toUpperCase() + city.slice(1)}` : "Waiting for city..."}
+                    {selectedCity
+                        ? `Weather forecast for ${selectedCity.charAt(0).toUpperCase() + selectedCity.slice(1)}`
+                        : "Waiting for city..."}
                 </h3>
                 <div className="table-responsive weather-table-container">
                     <table className="table table-sm table-bordered table-striped weather-table">
@@ -70,7 +77,7 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ city }) => {
                             </tr>
                         </thead>
                         <tbody className="text-center">
-                            {forecast ? (
+                            {showForecast && forecast ? (
                                 forecast.list.map((day) => (
                                     <tr key={day.dt_txt}>
                                         <td>{formatDateToWeekday(day.dt_txt)}</td>
@@ -88,7 +95,9 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ city }) => {
                                 ))
                             ) : (
                                 <tr>
-                                    <td colSpan={4} className="text-center text-muted">Waiting for city...</td>
+                                    <td colSpan={4} className="text-center text-muted">
+                                        Waiting for city...
+                                    </td>
                                 </tr>
                             )}
                         </tbody>

@@ -27,12 +27,6 @@ const UserInput: React.FC<UserInputProps> = ({ onCityChange }) => {
 
   const myRef = useRef(null);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newCity = e.target.value;
-    setSearch(newCity);
-    onCityChange(newCity);
-  };
-
   // useEffect(() => {
   //   if (search) {
   //     Axios.get(`http://localhost:8000/api/${search}`)
@@ -44,19 +38,13 @@ const UserInput: React.FC<UserInputProps> = ({ onCityChange }) => {
   //       });
   //   }
   // }, [search]);
-  const handleSearchClick = () => {
-    // if (search) {
-    //   Axios.get(`http://localhost:8000/api/${search}`)
-    //     .then((res) => {
-    //       setAddresses(res.data.results[1]);
-    //     })
-    //     .catch((error) => {
-    //       console.error("Error fetching data: ", error);
-    //     });
-    // }
-    // myRef.current.style.display = "block";
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  };
 
+  const handleSearchClick = () => {
     if (search) {
+      onCityChange(search); 
       const location = async () => {
         try {
           const response = await fetch(`http://localhost:8000/api/${search}`);
@@ -65,17 +53,12 @@ const UserInput: React.FC<UserInputProps> = ({ onCityChange }) => {
           setAddresses(data.results[1]);
         } catch (error) {
           console.error("Error fetching data: ", error);
-
         }
       };
-
       location();
-
- 
-  }
+    }
     myRef.current.style.display = "block";
-
-}
+  };
 
   // useEffect(() => {
   //   if (lat && lng) {
