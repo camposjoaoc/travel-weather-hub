@@ -69,7 +69,7 @@ app.get("/forecast", async (req, res) => {
   const { city } = req.query;
 
   if (!city) {
-    return res.status(400).json({ error: "City is obligatory" });
+    return res.status(400).json({ error: "City is required" });
   }
 
   try {
@@ -79,8 +79,8 @@ app.get("/forecast", async (req, res) => {
     console.log(response);
     res.json(response.data);
   } catch (error) {
-    console.error("Erro in the API OpenWeather:", error.response?.data || error.message);
-    res.status(500).json({ error: "Error - No weatcher fund" });
+    console.error("Error with OpenWeather API:", error.response?.data || error.message);
+    res.status(500).json({ error: "Error - No weather data found" });
   }
 });
 
