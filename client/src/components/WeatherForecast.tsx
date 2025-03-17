@@ -48,6 +48,10 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ city }) => {
 
                 setForecast({ ...response.data, list: filteredForecast });
                 setShowForecast(true);
+                // Salva latitude e longitude no localStorage
+                localStorage.setItem("latitude", response.data.city.coord.lat);
+                localStorage.setItem("longitude", response.data.city.coord.lon);
+
             })
             .catch(() => setError("This is not a valid city name. Waiting for city..."))
             .finally(() => setLoading(false));
@@ -55,47 +59,51 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ city }) => {
 
     return (
         <div className="container mt-4">
-            <h3 className="title text-center">Local Weather</h3>
+            <h3 className="title text-center small">Local Weather</h3>
 
-            {loading && <p className="text-center text-secondary">Loading...</p>}
-            {error && <p className="text-danger text-center">{error}</p>}
+            {loading && <p className="text-center text-secondary small">Loading...</p>}
+            {error && <p className="text-danger text-center small">{error}</p>}
 
-            <div className="mt-4">
-                <h3 className="text-center">
+            <div className="mt-3">
+                <h3 className="text-center small">
                     {selectedCity
                         ? `Weather forecast for ${selectedCity.charAt(0).toUpperCase() + selectedCity.slice(1)}`
                         : "Waiting for city..."}
                 </h3>
+
                 <div className="table-responsive weather-table-container">
-                    <table className="table table-sm table-bordered table-striped weather-table">
-                        <thead className="text-center">
+                    <table className="table table-sm table-bordered text-nowrap weather-table">
+                        <thead className="text-center small">
                             <tr>
                                 <th>Day</th>
-                                <th>Temp (°C)</th>
-                                <th>Rain (mm)</th>
+                                <th>Temp(°C)</th>
+                                <th>Feels Like(°C)</th>
+                                <th>Rain(mm)</th>
                                 <th>Weather</th>
                             </tr>
                         </thead>
-                        <tbody className="text-center">
+                        <tbody className="text-center small">
                             {showForecast && forecast ? (
                                 forecast.list.map((day) => (
                                     <tr key={day.dt_txt}>
                                         <td>{formatDateToWeekday(day.dt_txt)}</td>
                                         <td>{Math.round(day.main.temp)}°C</td>
+                                        <td>{Math.round(day.main.feels_like)}°C</td>
                                         <td>{day.rain ? day.rain["3h"] : 0} mm</td>
                                         <td>
                                             <img
                                                 src={`https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
                                                 alt="Weather icon"
                                                 title={day.weather[0].description}
-                                                className="weather-icon"
+                                                className="weather-icon img-fluid"
+                                                style={{ width: "30px", height: "30px" }}
                                             />
                                         </td>
                                     </tr>
                                 ))
                             ) : (
                                 <tr>
-                                    <td colSpan={4} className="text-center text-muted">
+                                    <td colSpan={4} className="text-center text-muted small">
                                         Waiting for city...
                                     </td>
                                 </tr>
