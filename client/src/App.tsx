@@ -14,7 +14,6 @@ function App() {
   return (
     <>
       <div className="container">
-
         {/* Section 1 - Logo & Input */}
         <section>
           <UserInput onCityChange={setCity} />

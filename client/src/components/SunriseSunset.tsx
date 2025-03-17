@@ -51,14 +51,14 @@ const SunriseSunset: React.FC = () => {
     }, [latitude, longitude]);
 
     return (
-        <div className="container mt-4">
+        <div className="container">
             <h3 className="text-center small">Sunrise & Sunset Times</h3>
             {error && <p className="text-danger text-center small">{error}</p>}
 
             {!latitude || !longitude ? (
                 <p className="text-center small">Waiting for city...</p>
             ) : sunData ? (
-                <div className="table-responsive mt-3">
+                <div className="table-responsive">
                     <table className="table table-sm table-bordered text-center">
                         <tbody>
                             <tr>
