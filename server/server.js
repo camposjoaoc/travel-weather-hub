@@ -61,7 +61,6 @@ app.get("/api/:address", (req, res) => {
 //     });
 // });
 
-
 //WeatherAPI
 app.get("/forecast", async (req, res) => {
   const API_KEY = process.env.OPENWEATHER_API_KEY;
@@ -81,6 +80,24 @@ app.get("/forecast", async (req, res) => {
   } catch (error) {
     console.error("Error with OpenWeather API:", error.response?.data || error.message);
     res.status(500).json({ error: "Error - No weather data found" });
+  }
+});
+
+// Sunrise-Sunset API
+app.get("/sunrise-sunset", async (req, res) => {
+  const { lat, lng } = req.query;
+
+  if (!lat || !lng) {
+    return res.status(400).json({ error: "Latitude and Longitude are required" });
+  }
+
+  try {
+    const response = await axios.get(`https://api.sunrisesunset.io/json?lat=${lat}&lng=${lng}`);
+
+    res.json(response.data);
+  } catch (error) {
+    console.error("Error with Sunrise-Sunset API:", error.response?.data || error.message);
+    res.status(500).json({ error: "Error fetching sunrise-sunset data" });
   }
 });
 

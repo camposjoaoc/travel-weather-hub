@@ -12,6 +12,33 @@
     height: auto;
 }
 
+/* Main flex container for layout */
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    gap: 3%;
+}
+
+/* Layout for normal sections (first div: 60%, second div: 27%) */
+.flex-container-normal>div:first-child {
+    flex: 0 0 60%;
+}
+
+.flex-container-normal>div:last-child {
+    flex: 0 0 27%;
+}
+
+/* Layout for reversed sections (first div: 27%, second div: 60%) */
+.flex-container-reverse>div:first-child {
+    flex: 0 0 27%;
+}
+
+.flex-container-reverse>div:last-child {
+    flex: 0 0 60%;
+}
+
 /* Desktop styles: large screens (min-width: 1025px) */
 @media screen and (min-width: 1025px) {
     .container {
@@ -26,6 +53,19 @@
         max-width: 1000px;
         margin: 15px auto;
     }
+
+    .flex-container {
+        flex-direction: column;
+        /* Stacks elements vertically */
+        gap: 20px;
+        /* Adds space between them */
+    }
+
+    .flex-container-normal>div,
+    .flex-container-reverse>div {
+        flex: 0 0 100%;
+        /* Each div takes 100% width */
+    }
 }
 
 /* Mobile styles: small screens (max-width: 767px) */
@@ -33,5 +73,17 @@
     .container {
         max-width: 100%;
         margin: 10px auto;
+    }
+
+    .flex-container {
+        flex-direction: column;
+        /* Stacks elements vertically */
+        gap: 15px;
+    }
+
+    .flex-container-normal>div,
+    .flex-container-reverse>div {
+        flex: 0 0 100%;
+        /* Each div takes the full width */
     }
 }
