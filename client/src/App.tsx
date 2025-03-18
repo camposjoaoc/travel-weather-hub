@@ -15,35 +15,32 @@ function App() {
   return (
     <>
       <div className="container">
-
         {/* Section 1 - Logo & Input */}
         <section>
           <UserInput onCityChange={setCity} />
         </section>
         {/* Section 2 - Traffic & Weather Forecast */}
         <section className="flex-container flex-container-normal">
-          <div>
+          <div className="container-box">
             {/* Traffic Component here */}
             <h2>Traffic Component</h2>
           </div>
 
-          <div>
+          <div className="container-box">
             <WeatherForecast city={city} />
           </div>
         </section>
 
         {/* Section 3 - SunriseSunset & Traffic Updates */}
         <section className="flex-container flex-container-reverse">
-          <div>
+          <div className="container-box">
             {/* SunriseSunset here */}
             <SunriseSunset />
           </div>
 
-          <div>
+          <div className="container-box">
             {/* Traffic Updates Component here */}
-            
             <TrafficIncidents city={city} />
-  
           </div>
         </section>
 

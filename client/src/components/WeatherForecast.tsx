@@ -28,8 +28,7 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ city }) => {
         setError(null);
         setShowForecast(false);
 
-        axios
-            .get(`http://localhost:8000/forecast?city=${selectedCity}`)
+        axios.get(`http://localhost:8000/forecast?city=${selectedCity}`)
             .then((response) => {
                 const forecasts = response.data.list;
                 const uniqueDays = new Set<string>();
@@ -48,9 +47,10 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ city }) => {
 
                 setForecast({ ...response.data, list: filteredForecast });
                 setShowForecast(true);
-                // Salva latitude e longitude no localStorage
+
                 localStorage.setItem("latitude", response.data.city.coord.lat);
                 localStorage.setItem("longitude", response.data.city.coord.lon);
+
 
             })
             .catch(() => setError("This is not a valid city name. Waiting for city..."))
@@ -59,18 +59,15 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ city }) => {
 
     return (
         <div className="container mt-4">
-            <h3 className="title text-center small">Local Weather</h3>
-
             {loading && <p className="text-center text-secondary small">Loading...</p>}
             {error && <p className="text-danger text-center small">{error}</p>}
-
             <div className="mt-3">
-                <h3 className="text-center small">
+                <h3 className="title text-center small">Local Weather</h3>
+                <h2 className="text-center small">
                     {selectedCity
                         ? `Weather forecast for ${selectedCity.charAt(0).toUpperCase() + selectedCity.slice(1)}`
                         : "Waiting for city..."}
-                </h3>
-
+                </h2>
                 <div className="table-responsive weather-table-container">
                     <table className="table table-sm table-bordered text-nowrap weather-table">
                         <thead className="text-center small">
