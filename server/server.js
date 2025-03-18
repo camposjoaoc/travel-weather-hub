@@ -145,6 +145,4 @@ app.get('/api/traffic-incidents', (req, res) => {
 
 // Start the server
 
-
-
 app.listen(8000, () => console.log(`backend server running on port ${PORT}`));

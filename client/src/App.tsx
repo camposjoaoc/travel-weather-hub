@@ -40,9 +40,7 @@ function App() {
 
           <div className="container-box">
             {/* Traffic Updates Component here */}
-            
             <TrafficIncidents city={city} />
-  
           </div>
         </section>
 
