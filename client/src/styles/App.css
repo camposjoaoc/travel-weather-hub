@@ -6,7 +6,6 @@
 }
 
 .container {
-
     width: 100%;
     max-width: 1600px;
     height: auto;
@@ -22,7 +21,15 @@
     align-items: flex-start;
     width: 100%;
     gap: 3%;
+    height: 25vh;
+    max-height: 30vh;
+}
+
+.container-box {
     border: 2px solid lightgray;
+    border-radius: 10px;
+    height: 25vh;
+    max-height: 30vh;
 }
 
 /* Layout for normal sections (first div: 60%, second div: 27%) */

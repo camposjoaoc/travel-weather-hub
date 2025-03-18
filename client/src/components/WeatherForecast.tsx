@@ -9,8 +9,6 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ city }) => {
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
     const [showForecast, setShowForecast] = useState<boolean>(false);
-    const [latitude, setLatitude] = useState<number | null>(null);
-    const [longitude, setLongitude] = useState<number | null>(null);
 
     const formatDateToWeekday = (dateString: string): string => {
         const date = new Date(dateString);
