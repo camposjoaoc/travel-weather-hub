@@ -2,9 +2,11 @@
 import React, { useState, useRef } from "react";
 //Bootstrap
 import "bootstrap/dist/css/bootstrap.css";
-import Button from "react-bootstrap/Button";
+// import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
+//Tailwind
+
 //Style
 import "../styles/userInput.css";
 //Images
@@ -15,6 +17,7 @@ interface UserInputProps {
 }
 
 const UserInput: React.FC<UserInputProps> = ({ onCityChange }) => {
+
   const [search, setSearch] = useState<string>("");
   const [addresses, setAddresses] = useState<any>(null);
 
@@ -44,6 +47,7 @@ const UserInput: React.FC<UserInputProps> = ({ onCityChange }) => {
 
   return (
     <>
+
       <div className="header">
         <img className="logo" src={logo} />
         <div className="searchInput">
@@ -65,13 +69,14 @@ const UserInput: React.FC<UserInputProps> = ({ onCityChange }) => {
               placeholder="Enter an address, country, city"
               onChange={handleInputChange}
             />
-            <Button
+            {/* <Button
               variant="outline-secondary"
               id="button-addon2"
               onClick={handleSearchClick}
             >
               Search
-            </Button>
+            </Button> */}
+           <button className="bg-sky-300 px-4 py-2 text-gray hover:bg-sky-700 sm:px-8 sm:py-3"  onClick={handleSearchClick}>Search</button>
           </InputGroup>
           <hr />
         </div>

@@ -30,7 +30,7 @@ app.get("/api/:address", (req, res) => {
 
   const options = {
     method: "GET",
-    url: `https://geokeo.com/geocode/v1/search.php?q=${address}&api=ebcb220f665c23f17b45f4c40cb42fc4`,
+    url: `https://geokeo.com/geocode/v1/search.php?q=${address}&api=${LOCATION_API_KEY}`,
   };
   axios
     .request(options)
@@ -41,25 +41,6 @@ app.get("/api/:address", (req, res) => {
       console.log(error);
     });
 });
-
-//Lat & Lng
-// app.get("/ap/:lat/:lng", (req, res) => {
-//   const lat = req.params.lat;
-//   const lng = req.params.lng;
-
-//   const options2 = {
-//     method: "GET",
-//     url: `https://geokeo.com/geocode/v1/reverse.php?lat=${lat}&lng=${lng}&api=ebcb220f665c23f17b45f4c40cb42fc4`,
-//   };
-//   axios
-//     .request(options2)
-//     .then((response) => {
-//       res.json(response.data);
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//     });
-// });
 
 //WeatherAPI
 app.get("/forecast", async (req, res) => {
@@ -78,7 +59,10 @@ app.get("/forecast", async (req, res) => {
     console.log(response);
     res.json(response.data);
   } catch (error) {
-    console.error("Error with OpenWeather API:", error.response?.data || error.message);
+    console.error(
+      "Error with OpenWeather API:",
+      error.response?.data || error.message
+    );
     res.status(500).json({ error: "Error - No weather data found" });
   }
 });
@@ -88,15 +72,22 @@ app.get("/sunrise-sunset", async (req, res) => {
   const { lat, lng } = req.query;
 
   if (!lat || !lng) {
-    return res.status(400).json({ error: "Latitude and Longitude are required" });
+    return res
+      .status(400)
+      .json({ error: "Latitude and Longitude are required" });
   }
 
   try {
-    const response = await axios.get(`https://api.sunrisesunset.io/json?lat=${lat}&lng=${lng}`);
+    const response = await axios.get(
+      `https://api.sunrisesunset.io/json?lat=${lat}&lng=${lng}`
+    );
 
     res.json(response.data);
   } catch (error) {
-    console.error("Error with Sunrise-Sunset API:", error.response?.data || error.message);
+    console.error(
+      "Error with Sunrise-Sunset API:",
+      error.response?.data || error.message
+    );
     res.status(500).json({ error: "Error fetching sunrise-sunset data" });
   }
 });
