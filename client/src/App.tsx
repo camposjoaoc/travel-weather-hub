@@ -3,6 +3,7 @@ import '../src/styles/App.css'
 import UserInput from './components/UserInput'
 import WeatherForecast from './components/WeatherForecast'
 import SunriseSunset from './components/SunriseSunset'
+import TrafficIncidents from './components/TrafficIncidents'
 
 function App() {
   const [city, setCity] = useState<string>("");
@@ -39,7 +40,9 @@ function App() {
 
           <div className="container-box">
             {/* Traffic Updates Component here */}
-            <h2>Traffic Updates</h2>
+            
+            <TrafficIncidents city={city} />
+  
           </div>
         </section>
 
