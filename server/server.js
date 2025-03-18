@@ -16,7 +16,7 @@ app.use(cors());
 
 const axios = require("axios");
 
-require("dotenv").config();
+require('dotenv').config({ path: '../.env' });
 
 app.get("/", (req, res) => {
   res.json("hi");
