@@ -7,7 +7,7 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 
 //Style
-import "../styles/userInput.css";
+// import "../styles/userInput.css";
 //Images
 import logo from "../assets/img/logo.jpg";
 
@@ -16,7 +16,6 @@ interface UserInputProps {
 }
 
 const UserInput: React.FC<UserInputProps> = ({ onCityChange }) => {
-
   const [search, setSearch] = useState<string>("");
   const [addresses, setAddresses] = useState<any>(null);
 
@@ -46,42 +45,37 @@ const UserInput: React.FC<UserInputProps> = ({ onCityChange }) => {
 
   return (
     <>
+      <div className="flex justify-around">
 
-      <div className="header">
-        <img className="logo" src={logo} />
+        <img className="w-[150px]" src={logo} />
+
         <div className="searchInput">
-          <h1 className="title">Local Travel & Weather Dashboard</h1>
-          {/* <h2 className="searchTitle">Search by address, country, or city</h2> */}
-          {/* search by address */}
-          <InputGroup className="mb-3">
-            <Form.Control
-              onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
-                if (e.key === "Enter") {
-                  handleSearchClick();
-                }
-              }}
-              className="inputSearch"
-              placeholder=""
-              aria-label=""
-              aria-describedby=""
-              value={search}
-              placeholder="Enter an address, country, city"
-              onChange={handleInputChange}
-            />
-            {/* <Button
-              variant="outline-secondary"
-              id="button-addon2"
-              onClick={handleSearchClick}
-            >
-              Search
-            </Button> */}
-           <button className="bg-sky-300 px-4 py-2 text-gray hover:bg-sky-700 sm:px-8 sm:py-3"  onClick={handleSearchClick}>Search</button>
-          </InputGroup>
+          <h1 className="text-[24px] text-center">Local Travel & Weather Dashboard</h1>
+          <input
+            className="w-[500px] h-[42px]"
+            onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
+              if (e.key === "Enter") {
+                handleSearchClick();
+              }
+            }}
+            value={search}
+            placeholder="Enter an address, country, city"
+            onChange={handleInputChange}
+          />
+          <button
+            className="bg-blue-100 px-4 py-2 text-gray hover:bg-red-400 sm:px-8 sm:py-3"
+            onClick={handleSearchClick}
+          >
+            Search
+          </button>
+
           <hr />
         </div>
+        <img className="w-[150px]" src={logo} />
+
       </div>
 
-      <div className="results" ref={myRef}>
+      <div className="text-center" ref={myRef}>
         <iframe
           width="425"
           height="350"
