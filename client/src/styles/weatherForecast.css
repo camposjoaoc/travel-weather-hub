@@ -1,49 +1,36 @@
-/* WeatherTable.css */
-
-/* Reduces font size to make the table more compact */
 .weather-table-container {
     max-width: 100%;
     overflow-x: auto;
+
 }
 
 .weather-table {
     font-size: 0.85rem;
-    /* Reduces the font size */
     white-space: nowrap;
-    /* Prevents text from wrapping, keeping the table compact */
 }
 
-/* Reduces internal cell spacing */
 .weather-table th,
 .weather-table td {
     padding: 4px 8px;
-    /* Reduces cell padding */
     text-align: center;
-    /* Centers the text */
 }
 
-/* Adjusts the size of the weather icon */
 .weather-icon {
     width: 30px;
     height: 30px;
 }
 
-/* Reduces the overall size of the section */
 .weather-container {
     max-width: 600px;
-    /* Sets a width limit */
     margin: 0 auto;
-    /* Centers the table */
     padding: 10px;
 }
 
-/* Smaller title */
 .weather-title {
     font-size: 1.2rem;
     margin-bottom: 10px;
 }
 
-/* Reduces vertical spacing */
 .weather-subtitle {
     font-size: 1rem;
     margin-bottom: 8px;

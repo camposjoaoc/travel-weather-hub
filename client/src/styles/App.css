@@ -6,10 +6,12 @@
 }
 
 .container {
-    margin: 10px auto;
     width: 100%;
     max-width: 1600px;
     height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 /* Main flex container for layout */
@@ -19,7 +21,16 @@
     align-items: flex-start;
     width: 100%;
     gap: 3%;
+    height: 25vh;
+    max-height: 30vh;
 }
+
+/* .container-box {
+    border: 2px solid lightgray;
+    border-radius: 10px;
+    height: 25vh;
+    max-height: 30vh;
+} */
 
 /* Layout for normal sections (first div: 60%, second div: 27%) */
 .flex-container-normal>div:first-child {
@@ -43,7 +54,7 @@
 @media screen and (min-width: 1025px) {
     .container {
         max-width: 1400px;
-        margin: 30px auto;
+        margin: 20px auto;
     }
 }
 
