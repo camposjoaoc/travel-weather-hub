@@ -128,5 +128,44 @@ app.get('/api/traffic-incidents', (req, res) => {
     });
 });
 
+//Resrobot API
+
+app.get("/transport-departures", async (req, res) => {
+
+  const { lat, lng } = req.query;
+
+  if (!lat || !lng) {
+    return res
+      .status(400)
+      .json({ error: "Latitude and Longitude are required" });
+  }
+
+  const RESROBOT_API_KEY = "94a822b8-43c6-4c08-bf86-83a221ccbc5d";
+  //const lat = "55.610835";
+  //const lng = "13.014206";
+
+  //const lat = "57.695276";
+  //const lng = "11.913815";
+
+  try {
+    const responseNearByStops = await axios.get(
+      `https://api.resrobot.se/v2.1/location.nearbystops?format=json&originCoordLat=${lat}&originCoordLong=${lng}&maxNo=1&accessId=${RESROBOT_API_KEY}`
+    );
+    const stopLocationExtId = responseNearByStops.data.stopLocationOrCoordLocation[0].StopLocation.extId;
+    const stopLocationName = responseNearByStops.data.stopLocationOrCoordLocation[0].StopLocation.name;
+
+    const responseDepartureBoard = await axios.get(
+      `https://api.resrobot.se/v2.1/departureBoard?format=json&id=${stopLocationExtId}&maxJourneys=10&accessId=${RESROBOT_API_KEY}`
+    );
+    res.json({ stopLocationName, departureBoard: responseDepartureBoard.data });
+  } catch (error) {
+    console.error(
+      "Error ",
+      error.response?.data || error.message
+    );
+    res.status(500).json({ error: "Error - No data found" });
+  }
+});
+
 // Start the server
 app.listen(8000, () => console.log(`backend server running on port ${PORT}`));
