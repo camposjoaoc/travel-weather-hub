@@ -5,6 +5,7 @@ import WeatherForecast from './components/WeatherForecast'
 import SunriseSunset from './components/SunriseSunset'
 import TrafficIncidents from './components/TrafficIncidents'
 import Footer from './components/Footer'
+import TransportDepartures from "./components/TransportDepartures";
 
 function App() {
   const [city, setCity] = useState<string>("");
@@ -27,7 +28,7 @@ function App() {
         <section className="flex-container flex-container-normal">
           <div className="container-box">
             {/* Traffic Component here */}
-            <h2>Traffic Component</h2>
+            <TransportDepartures latitude={latitude} longitude={longitude} />
           </div>
 
           <div className="container-box">
