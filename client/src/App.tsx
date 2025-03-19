@@ -9,6 +9,9 @@ import Footer from './components/Footer'
 function App() {
   const [city, setCity] = useState<string>("");
 
+  const [latitude, setLatitude] = useState<string>("");
+  const [longitude, setLongitude] = useState<string>("");
+
   window.addEventListener("load", () => {
     localStorage.removeItem("latitude");
     localStorage.removeItem("longitude");
