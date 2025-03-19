@@ -1,25 +1,18 @@
-.weather-table-container {
+/* .weather-table-container {
     max-width: 100%;
     overflow-x: auto;
-
 }
 
 .weather-table {
     font-size: 0.85rem;
-    white-space: nowrap;
 }
 
 .weather-table th,
 .weather-table td {
-    padding: 4px 8px;
+    padding: 0;
+    margin: 0;
     text-align: center;
 }
-
-.weather-icon {
-    width: 30px;
-    height: 30px;
-}
-
 .weather-container {
     max-width: 600px;
     margin: 0 auto;
@@ -27,11 +20,11 @@
 }
 
 .weather-title {
-    font-size: 1.2rem;
+    font-size: 0.9rem;
     margin-bottom: 10px;
 }
 
 .weather-subtitle {
-    font-size: 1rem;
+    font-size: 0.5rem;
     margin-bottom: 8px;
-}
+} */

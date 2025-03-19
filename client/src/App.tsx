@@ -4,6 +4,7 @@ import UserInput from './components/UserInput'
 import WeatherForecast from './components/WeatherForecast'
 import SunriseSunset from './components/SunriseSunset'
 import TrafficIncidents from './components/TrafficIncidents'
+import Footer from './components/Footer'
 
 function App() {
   const [city, setCity] = useState<string>("");
@@ -45,6 +46,8 @@ function App() {
         </section>
 
       </div>
+      {/* Footer */}
+      <Footer />
     </>
   )
 }

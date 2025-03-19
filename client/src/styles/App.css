@@ -21,16 +21,9 @@
     align-items: flex-start;
     width: 100%;
     gap: 3%;
-    height: 25vh;
-    max-height: 30vh;
+    height: auto;
+    max-height: 40vh;
 }
-
-/* .container-box {
-    border: 2px solid lightgray;
-    border-radius: 10px;
-    height: 25vh;
-    max-height: 30vh;
-} */
 
 /* Layout for normal sections (first div: 60%, second div: 27%) */
 .flex-container-normal>div:first-child {
@@ -48,6 +41,15 @@
 
 .flex-container-reverse>div:last-child {
     flex: 0 0 60%;
+}
+
+.footer {
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+    margin-top: auto;
+    position: relative;
+    bottom: 0;
 }
 
 /* Desktop styles: large screens (min-width: 1025px) */
@@ -96,5 +98,10 @@
     .flex-container-reverse>div {
         flex: 0 0 100%;
         /* Each div takes the full width */
+    }
+
+    .footer {
+        padding: 8px 0;
+        font-size: 0.8rem;
     }
 }

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { WeatherForecastData, WeatherForecastProps } from "../types/WeatherForecastData";
 
 const WeatherForecast: React.FC<WeatherForecastProps> = ({ city }) => {
@@ -58,49 +57,48 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ city }) => {
     }, [selectedCity]);
 
     return (
-        <div className="container mt-4">
-            {loading && <p className="text-center text-secondary small">Loading...</p>}
-            {error && <p className="text-danger text-center small">{error}</p>}
-            <div className="mt-3">
-                <h3 className="title text-center small">Local Weather</h3>
-                <h2 className="text-center small">
+        <div className="max-w-full overflow-x-auto ">
+            {loading && <p className="text-center text-gray-500 text-sm">Loading...</p>}
+            {error && <p className="text-red-500 text-center text-sm">{error}</p>}
+            <div className="mt-1">
+                <h3 className="font-sketch text-[1.5rem] text-center">Local Weather</h3>
+                <h4 className="text-[0.9rem] text-center">
                     {selectedCity
                         ? `Weather forecast for ${selectedCity.charAt(0).toUpperCase() + selectedCity.slice(1)}`
                         : "Waiting for city..."}
-                </h2>
-                <div className="table-responsive weather-table-container">
-                    <table className="table table-sm table-bordered text-nowrap weather-table">
-                        <thead className="text-center small">
+                </h4>
+                <div className="max-w-full overflow-x-auto">
+                    <table className=" text-[0.85rem] w-full border border-gray-300 text-center text-xs leading-tight">
+                        <thead className="bg-gray-100 text-gray-700">
                             <tr>
-                                <th>Day</th>
-                                <th>Temp(°C)</th>
-                                <th>Feels Like(°C)</th>
-                                <th>Rain(mm)</th>
-                                <th>Weather</th>
+                                <th className="border px-1 py-1">Day</th>
+                                <th className="border px-1 py-1">Temp(°C)</th>
+                                <th className="border px-2 py-1">Feels Like(°C)</th>
+                                <th className="border px-1 py-1">Rain(mm)</th>
+                                <th className="border px-1 py-1">Weather</th>
                             </tr>
                         </thead>
-                        <tbody className="text-center small">
+                        <tbody>
                             {showForecast && forecast ? (
                                 forecast.list.map((day) => (
-                                    <tr key={day.dt_txt}>
-                                        <td>{formatDateToWeekday(day.dt_txt)}</td>
-                                        <td>{Math.round(day.main.temp)}°C</td>
-                                        <td>{Math.round(day.main.feels_like)}°C</td>
-                                        <td>{day.rain ? day.rain["3h"] : 0} mm</td>
-                                        <td>
+                                    <tr key={day.dt_txt} className="border-t">
+                                        <td className="border px-2 py-1">{formatDateToWeekday(day.dt_txt)}</td>
+                                        <td className="border px-2 py-1">{Math.round(day.main.temp)}°C</td>
+                                        <td className="border px-2 py-1">{Math.round(day.main.feels_like)}°C</td>
+                                        <td className="border px-2 py-1">{day.rain ? day.rain["3h"] : 0} mm</td>
+                                        <td className="border px-1 py-0.5 leading-none">
                                             <img
                                                 src={`https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
                                                 alt="Weather icon"
                                                 title={day.weather[0].description}
-                                                className="weather-icon img-fluid"
-                                                style={{ width: "30px", height: "30px" }}
+                                                style={{ width: "30px", height: "30px", maxWidth: "30px", maxHeight: "30px", display: "inline-block" }}
                                             />
                                         </td>
                                     </tr>
                                 ))
                             ) : (
                                 <tr>
-                                    <td colSpan={4} className="text-center text-muted small">
+                                    <td colSpan={5} className="text-center text-gray-400 py-2">
                                         Waiting for city...
                                     </td>
                                 </tr>
