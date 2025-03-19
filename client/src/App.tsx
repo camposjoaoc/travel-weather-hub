@@ -22,7 +22,7 @@ function App() {
       <div className="container">
         {/* Section 1 - Logo & Input */}
         <section>
-          <UserInput onCityChange={setCity} />
+          <UserInput onCityChange={setCity} setLatitude={setLatitude} setLongitude={setLongitude} />
         </section>
         {/* Section 2 - Traffic & Weather Forecast */}
         <section className="flex-container flex-container-normal">

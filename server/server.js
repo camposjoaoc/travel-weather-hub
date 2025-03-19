@@ -131,7 +131,7 @@ app.get('/api/traffic-incidents', (req, res) => {
 //Resrobot API
 
 app.get("/transport-departures", async (req, res) => {
-
+  console.log("req.query", req.query);
   const { lat, lng } = req.query;
 
   if (!lat || !lng) {
