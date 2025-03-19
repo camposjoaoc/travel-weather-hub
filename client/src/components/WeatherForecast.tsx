@@ -68,7 +68,7 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ city }) => {
                         : "Waiting for city..."}
                 </h4>
                 <div className="max-w-full overflow-x-auto">
-                    <table className=" text-[0.85rem] w-full border border-gray-300 text-center text-xs leading-tight">
+                    <table className="text-[0.85rem] w-full border border-gray-300 text-center text-xs leading-tight">
                         <thead className="bg-gray-100 text-gray-700">
                             <tr>
                                 <th className="border px-1 py-1">Day</th>
