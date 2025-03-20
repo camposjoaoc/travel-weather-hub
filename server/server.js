@@ -94,13 +94,8 @@ app.get("/sunrise-sunset", async (req, res) => {
 });
 
 // API Key and URL for Trafikverket API
-<<<<<<< HEAD
 const API_KEY = "bc67eb1d6aa0423c9fa3f69f93349e30";
 const API_URL = "https://api.trafikinfo.trafikverket.se/v2/data.json";
-=======
-const API_KEY = 'bc67eb1d6aa0423c9fa3f69f93349e30';
-const API_URL = 'https://api.trafikinfo.trafikverket.se/v2/data.json';
->>>>>>> d335083806119bf368292641b3fb7e8c5e954b31
 
 const xmlData = `
       <REQUEST>
@@ -110,7 +105,6 @@ const xmlData = `
              <NEAR name="Deviation.Geometry.WGS84" value="12.413973 56.024823"/>
                </FILTER>
           </QUERY>
-<<<<<<< HEAD
       </REQUEST>`;
 
 // POST request to fetch traffic incidents for Sweden
@@ -121,35 +115,49 @@ app.get("/api/traffic-incidents", (req, res) => {
         "Content-Type": "text/xml", // Ensure XML content type
       },
     })
-=======
-      </REQUEST>`
-// POST request to fetch traffic incidents for Sweden
-app.get('/api/traffic-incidents', (req, res) => {
-  axios.post(API_URL, xmlData, {
-    headers: {
-      "Content-Type": "text/xml", // Ensure XML content type 
-
-    },
-  })
->>>>>>> d335083806119bf368292641b3fb7e8c5e954b31
     .then((response) => {
       console.log("Received response:", response.data);
 
       // Send the traffic data response back to the client
       res.json(response.data);
     })
-<<<<<<< HEAD
 
     .catch((error) => {
       console.error("Error fetching traffic incidents:", error);
       res.status(500).send({ error: "Failed to fetch traffic incidents" });
-=======
-    .catch((error) => {
-      console.error('Error fetching traffic incidents:', error);
-      res.status(500).send({ error: 'Failed to fetch traffic incidents' });
-
->>>>>>> d335083806119bf368292641b3fb7e8c5e954b31
     });
+});
+
+//Resrobot API
+
+app.get("/transport-departures", async (req, res) => {
+  const { lat, lng } = req.query;
+
+  if (!lat || !lng) {
+    return res
+      .status(400)
+      .json({ error: "Latitude and Longitude are required" });
+  }
+
+  const RESROBOT_API_KEY = "94a822b8-43c6-4c08-bf86-83a221ccbc5d";
+  try {
+    const responseNearByStops = await axios.get(
+      `https://api.resrobot.se/v2.1/location.nearbystops?format=json&originCoordLat=${lat}&originCoordLong=${lng}&maxNo=1&accessId=${RESROBOT_API_KEY}`
+    );
+    const stopLocationExtId = responseNearByStops.data.stopLocationOrCoordLocation[0].StopLocation.extId;
+    const stopLocationName = responseNearByStops.data.stopLocationOrCoordLocation[0].StopLocation.name;
+
+    const responseDepartureBoard = await axios.get(
+      `https://api.resrobot.se/v2.1/departureBoard?format=json&id=${stopLocationExtId}&maxJourneys=10&accessId=${RESROBOT_API_KEY}`
+    );
+    res.json({ stopLocationName, departureBoard: responseDepartureBoard.data });
+  } catch (error) {
+    console.error(
+      "Error ",
+      error.response?.data || error.message
+    );
+    res.status(500).json({ error: "Error - No data found" });
+  }
 });
 
 // Start the server

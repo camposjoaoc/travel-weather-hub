@@ -3,26 +3,26 @@ import React, { useState } from "react";
 
 //Images
 import logo from "../assets/img/logo.jpg";
-
-//Style
-import "../styles/userInput.css";
+import { CLIENT_RENEG_LIMIT } from "tls";
 
 type UserInputProps = {
   onCityChange: (city: string) => void;
+  setLatitude: (latitude: string) => void;
+  setLongitude: (longitude: string) => void;
 };
 
-// type addressResult = {
-//   geometry: {
-//     location: {
-//       lat: number;
-//       lng: number;
-//     };
-//   };
-// };
-const UserInput: React.FC<UserInputProps> = ({ onCityChange }) => {
+type addressResult = {
+  geometry: {
+    location: {
+      lat: number;
+      lng: number;
+    };
+  };
+};
+const UserInput: React.FC<UserInputProps> = ({ onCityChange, setLatitude, setLongitude }) => {
   const [search, setSearch] = useState<string>("");
-  // const [addresses, setAddresses] = useState<addressResult | null>(null);
-  // const [show, setShow] = useState<boolean>(false);
+  const [addresses, setAddresses] = useState<addressResult | null>(null);
+  const [show, setShow] = useState<boolean>(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
@@ -32,13 +32,18 @@ const UserInput: React.FC<UserInputProps> = ({ onCityChange }) => {
     if (!search) return;
     onCityChange(search);
     const location = async () => {
+
       try {
         const response = await fetch(`http://localhost:8000/api/${search}`);
         const data = await response.json();
+
         console.log(data);
-        // setAddresses(data.results[1]);
-        // setShow(true);
+        setAddresses(data.results[1]);
+        setLatitude(data.results[1].geometry.location.lat);
+        setLongitude(data.results[1].geometry.location.lng);
+        setShow(true);
       } catch (error) {
+
         console.error("Error fetching data: ", error);
       }
     };
