@@ -52,7 +52,7 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ city }) => {
 
 
             })
-            .catch(() => setError("This is not a valid city name. Waiting for city..."))
+            .catch(() => setError("City not found. Waiting for city..."))
             .finally(() => setLoading(false));
     }, [selectedCity]);
 
@@ -82,7 +82,7 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ city }) => {
                             {showForecast && forecast ? (
                                 forecast.list.map((day) => (
                                     <tr key={day.dt_txt} className="border-t">
-                                        <td className="border px-2 py-1">{formatDateToWeekday(day.dt_txt)}</td>
+                                        <td className="border px-2 py-1 font-semibold">{formatDateToWeekday(day.dt_txt)}</td>
                                         <td className="border px-2 py-1">{Math.round(day.main.temp)}°C</td>
                                         <td className="border px-2 py-1">{Math.round(day.main.feels_like)}°C</td>
                                         <td className="border px-2 py-1">{day.rain ? day.rain["3h"] : 0} mm</td>

@@ -26,7 +26,7 @@ const SunriseSunset: React.FC = () => {
             } else {
                 clearInterval(interval);
             }
-        }, );
+        },);
 
         return () => clearInterval(interval);
     }, []);
@@ -51,7 +51,7 @@ const SunriseSunset: React.FC = () => {
 
     return (
         <div className="max-w-[600px] mx-auto p-2.5">
-            <h3 className="text-[1.5rem] text-center font-semibold">Sunrise & Sunset Times</h3>
+            <h3 className="font-sketch text-[1.5rem] text-center mb-2">Sunrise & Sunset Times</h3>
 
             {error && <p className="text-red-500 text-center text-sm">{error}</p>}
 
@@ -61,35 +61,35 @@ const SunriseSunset: React.FC = () => {
                 <p className="text-center text-sm">Loading...</p>
             ) : sunData ? (
                 <div className="max-w-full overflow-x-auto">
-                    <table className="w-full border border-gray-300 text-center text-[0.85rem]">
+                    <table className="text-[0.85rem] w-full border border-gray-300 text-center ">
                         <tbody>
                             <tr className="border-t">
-                                <td className="border p-2 m-0 text-center font-semibold">🌅 Sunrise</td>
-                                <td className="border p-2 m-0">{sunData.sunrise}</td>
+                                <td className="border p-1 m-0 text-center font-semibold">🌅 Sunrise</td>
+                                <td className="border p-1 m-0">{sunData.sunrise}</td>
                             </tr>
                             <tr className="border-t">
-                                <td className="border p-2 m-0 text-center font-semibold">🟠 Golden Hour</td>
-                                <td className="border p-2 m-0">{sunData.golden_hour}</td>
+                                <td className="border p-1 m-0 text-center font-semibold">🟠 Golden Hour</td>
+                                <td className="border p-1 m-0">{sunData.golden_hour}</td>
                             </tr>
                             <tr className="border-t">
-                                <td className="border p-2 m-0 text-center font-semibold">🌇 Sunset</td>
-                                <td className="border p-2 m-0">{sunData.sunset}</td>
+                                <td className="border p-1 m-0 text-center font-semibold">🌇 Sunset</td>
+                                <td className="border p-1 m-0">{sunData.sunset}</td>
                             </tr>
                             <tr className="border-t">
-                                <td className="border p-2 m-0 text-center font-semibold">☀️ Solar Noon</td>
-                                <td className="border p-2 m-0">{sunData.solar_noon}</td>
+                                <td className="border p-1 m-0 text-center font-semibold">☀️ Solar Noon</td>
+                                <td className="border p-1 m-0">{sunData.solar_noon}</td>
                             </tr>
                             <tr className="border-t">
-                                <td className="border p-2 m-0 text-center font-semibold">⏳ Day Length</td>
-                                <td className="border p-2 m-0">{sunData.day_length}</td>
+                                <td className="border p-1 m-0 text-center font-semibold">⏳ Day Length</td>
+                                <td className="border p-1 m-0">{sunData.day_length}</td>
                             </tr>
                             <tr className="border-t">
-                                <td className="border p-2 m-0 text-center font-semibold">🌄 Dawn</td>
-                                <td className="border p-2 m-0">{sunData.dawn}</td>
+                                <td className="border p-1 m-0 text-center font-semibold">🌄 Dawn</td>
+                                <td className="border p-1 m-0">{sunData.dawn}</td>
                             </tr>
                             <tr className="border-t">
-                                <td className="border p-2 m-0 text-center font-semibold">🌆 Dusk</td>
-                                <td className="border p-2 m-0">{sunData.dusk}</td>
+                                <td className="border p-1 m-0 text-center font-semibold">🌆 Dusk</td>
+                                <td className="border p-1 m-0">{sunData.dusk}</td>
                             </tr>
                         </tbody>
                     </table>
