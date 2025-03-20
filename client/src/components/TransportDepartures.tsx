@@ -42,6 +42,7 @@ const formatTransportTypes = (products: string) => {
 };
 const TransportDepartures: React.FC<TransportDeparturesProps> = ({ latitude, longitude }) => {
 
+    console.log(latitude, longitude);
     const [departures, setDepartures] = useState<Departure[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -93,11 +94,11 @@ const TransportDepartures: React.FC<TransportDeparturesProps> = ({ latitude, lon
     } else {
 
         return (
-            <div className="container">
+            <div className="container p-5">
                 <h4 className="text-center small">Transport Departures</h4>
                 <div className="table-responsive weather-table-container" style={{
                     maxHeight: '200px',
-                    maxWidth: '600px',
+                    maxWidth: '900px',
                     overflowY: 'auto',
                     border: '1px solid #dee2e6',
                 }}>

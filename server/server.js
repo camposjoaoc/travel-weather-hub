@@ -131,7 +131,6 @@ app.get('/api/traffic-incidents', (req, res) => {
 //Resrobot API
 
 app.get("/transport-departures", async (req, res) => {
-  console.log("req.query", req.query);
   const { lat, lng } = req.query;
 
   if (!lat || !lng) {
@@ -141,12 +140,6 @@ app.get("/transport-departures", async (req, res) => {
   }
 
   const RESROBOT_API_KEY = "94a822b8-43c6-4c08-bf86-83a221ccbc5d";
-  //const lat = "55.610835";
-  //const lng = "13.014206";
-
-  //const lat = "57.695276";
-  //const lng = "11.913815";
-
   try {
     const responseNearByStops = await axios.get(
       `https://api.resrobot.se/v2.1/location.nearbystops?format=json&originCoordLat=${lat}&originCoordLong=${lng}&maxNo=1&accessId=${RESROBOT_API_KEY}`
