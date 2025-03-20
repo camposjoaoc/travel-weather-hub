@@ -1,76 +1,43 @@
-.header {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(3, 0.3fr);
+.heading {
+  width: 100%;
+  font-family: "Oxygen";
+  text-align: center;
+  margin-bottom: 20px;
 }
-
 .logo {
   max-width: 150px;
+}
+.inputAndBtn {
+  max-width: 600px;
   width: 100%;
-  border: 2px solid lightgray;
-  border-radius: 5px;
-  grid-column: 1;
-  grid-row: 2/3;
-  min-height: 100px;
-  margin-top: -20px;
+  text-align: center;
+  margin: auto;
 }
 .searchInput {
-  grid-column: 2 /5;
-  grid-row: 2/3;
-  /* border: 2px solid; */
-  /* margin-top: -20px;;  */
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  border: 2px solid lightgray;
+  max-width: 600px;
+  width: 100%;
+  font-family: "Oxygen";
 }
-.title {
-  text-align: center;
-  color: gray;
-  font-family: "Oxygen", sans-serif;
-  font-size: 24px;
+.searchBtn {
+  height: 42px;
+  position: absolute;
+  right: 0;
+  font-family: "Oxygen";
 }
-.mb-3 {
+.map,
+.iframe {
+  border: 2px solid;
   max-width: 500px;
   width: 100%;
   margin: auto;
-}
-.inputSearch {
-  max-width: 500px;
-  width: 100%;
+  min-height: 300px;
   text-align: center;
+  margin-top: 10px;
+}
 
-  /* margin: auto; */
-}
-h1 {
-  /* color: red */
-}
-.results {
-  text-align: center;
-  display: none;
-}
-.noResults {
-  display: none;
-  text-align: center;
-}
-.lat-lng {
-  display: flex;
-  /* flex-direction: column; */
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-.lat,
-.lng {
-  max-width: 400px;
-  width: 100%;
-  min-height: 100%;
-}
-.latAndLng {
-  /* display: block; */
-}
-.noLatOrLng {
-  display: none;
-}
-.searchTitle {
-  text-align: center;
+@media only screen and (max-width: 740px) {
+  .logo {
+    display: none;
+  }
 }

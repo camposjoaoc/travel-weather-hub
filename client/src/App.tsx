@@ -1,10 +1,10 @@
 import { useState } from "react";
-import '../src/styles/App.css'
-import UserInput from './components/UserInput'
-import WeatherForecast from './components/WeatherForecast'
-import SunriseSunset from './components/SunriseSunset'
-import TrafficIncidents from './components/TrafficIncidents'
-import Footer from './components/Footer'
+import "../src/styles/App.css";
+import UserInput from "./components/UserInput";
+import WeatherForecast from "./components/WeatherForecast";
+import SunriseSunset from "./components/SunriseSunset";
+import TrafficIncidents from "./components/TrafficIncidents";
+import Footer from "./components/Footer";
 
 function App() {
   const [city, setCity] = useState<string>("");
@@ -44,12 +44,11 @@ function App() {
             <TrafficIncidents city={city} />
           </div>
         </section>
-
       </div>
       {/* Footer */}
       <Footer />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

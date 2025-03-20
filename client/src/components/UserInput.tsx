@@ -4,22 +4,25 @@ import React, { useState } from "react";
 //Images
 import logo from "../assets/img/logo.jpg";
 
+//Style
+import "../styles/userInput.css";
+
 type UserInputProps = {
   onCityChange: (city: string) => void;
 };
 
-type addressResult = {
-  geometry: {
-    location: {
-      lat: number;
-      lng: number;
-    };
-  };
-};
+// type addressResult = {
+//   geometry: {
+//     location: {
+//       lat: number;
+//       lng: number;
+//     };
+//   };
+// };
 const UserInput: React.FC<UserInputProps> = ({ onCityChange }) => {
   const [search, setSearch] = useState<string>("");
-  const [addresses, setAddresses] = useState<addressResult | null>(null);
-  const [show, setShow] = useState<boolean>(false);
+  // const [addresses, setAddresses] = useState<addressResult | null>(null);
+  // const [show, setShow] = useState<boolean>(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
@@ -33,8 +36,8 @@ const UserInput: React.FC<UserInputProps> = ({ onCityChange }) => {
         const response = await fetch(`http://localhost:8000/api/${search}`);
         const data = await response.json();
         console.log(data);
-        setAddresses(data.results[1]);
-        setShow(true);
+        // setAddresses(data.results[1]);
+        // setShow(true);
       } catch (error) {
         console.error("Error fetching data: ", error);
       }
@@ -44,15 +47,14 @@ const UserInput: React.FC<UserInputProps> = ({ onCityChange }) => {
 
   return (
     <>
-      <div className="flex justify-around">
-        <img className="w-[150px]" src={logo} />
-
-        <div className="searchInput">
-          <h1 className="text-[24px] text-center">
+      <div className="inputAndBtnAndLogo flex">
+        <img className="w-[150px] logo" src={logo} />
+        <div className="relative self-center inputAndBtn">
+          <h1 className="text-[24px] text-center self-center heading">
             Local Travel & Weather Dashboard
           </h1>
           <input
-            className="w-[500px] h-[42px]"
+            className="searchInput w-[500px] h-[42px] rounded-full "
             onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
               if (e.key === "Enter") {
                 handleSearchClick();
@@ -63,7 +65,7 @@ const UserInput: React.FC<UserInputProps> = ({ onCityChange }) => {
             onChange={handleInputChange}
           />
           <button
-            className="bg-blue-100 px-4 py-2 text-gray hover:bg-red-400 sm:px-8 sm:py-3"
+            className="bg-blue-100 px-4 py-2 text-gray hover:bg-gray-100 sm:px-8 sm:py-3  rounded-full searchBtn"
             onClick={handleSearchClick}
           >
             Search
@@ -71,14 +73,12 @@ const UserInput: React.FC<UserInputProps> = ({ onCityChange }) => {
 
           <hr />
         </div>
-        <img className="w-[150px]" src={logo} />
       </div>
 
-      {show && addresses && (
-        <div className="text-center">
+      {/* {show && addresses && (
+        <div className="map">
           <iframe
-            width="425"
-            height="350"
+            className="iframe"
             src={`https://www.openstreetmap.org/export/embed.html?bbox=
           ${addresses?.geometry?.location?.lng}%2C
           ${addresses?.geometry?.location?.lat}%2C
@@ -95,7 +95,7 @@ const UserInput: React.FC<UserInputProps> = ({ onCityChange }) => {
             </a>
           </small>
         </div>
-      )}
+      )} */}
     </>
   );
 };
