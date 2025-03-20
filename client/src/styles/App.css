@@ -69,15 +69,14 @@
 
     .flex-container {
         flex-direction: column;
-        /* Stacks elements vertically */
         gap: 20px;
-        /* Adds space between them */
+        justify-content: center;
+        align-items: center;
     }
 
     .flex-container-normal>div,
     .flex-container-reverse>div {
         flex: 0 0 100%;
-        /* Each div takes 100% width */
     }
 }
 
@@ -86,22 +85,24 @@
     .container {
         max-width: 100%;
         margin: 10px auto;
+        justify-content: center;
+        align-items: center;
     }
 
     .flex-container {
         flex-direction: column;
-        /* Stacks elements vertically */
-        gap: 15px;
+        gap: 20px;
+        justify-content: center;
+        align-items: center;
     }
 
     .flex-container-normal>div,
     .flex-container-reverse>div {
         flex: 0 0 100%;
-        /* Each div takes the full width */
     }
 
     .footer {
-        padding: 8px 0;
-        font-size: 0.8rem;
+        padding: 8px;
+        font-size: 0.1rem;
     }
 }
