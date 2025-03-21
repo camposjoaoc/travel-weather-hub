@@ -27,7 +27,7 @@
 
 /* Layout for normal sections (first div: 60%, second div: 27%) */
 .flex-container-normal>div:first-child {
-    flex: 0 0 60%;
+    flex: 0 0 70%;
 }
 
 .flex-container-normal>div:last-child {

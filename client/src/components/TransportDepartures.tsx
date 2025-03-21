@@ -97,31 +97,31 @@ const TransportDepartures: React.FC<TransportDeparturesProps> = ({ latitude, lon
             <div className="container p-5">
                 <h4 className="text-center small">Transport Departures</h4>
                 <div className="table-responsive weather-table-container" style={{
-                    maxHeight: '200px',
+                    maxHeight: '230px',
                     maxWidth: '900px',
                     overflowY: 'auto',
                     border: '1px solid #dee2e6',
                 }}>
 
                     <table className="table table-sm table-striped table-bordered text-nowrap weather-table" style={{ width: '100%' }}>
-                        <thead className="text-center small">
+                        <thead className="text-center small bg-gray-100 text-gray-700">
                             <tr>
 
-                                <th>Departure Date-Time</th>
-                                <th>Stop</th>
-                                <th>Direction</th>
-                                <th>Transport Type</th>
-                                <th>Name</th>
+                                <th className="border px-1 py-1">Departure Date-Time</th>
+                                <th className="border px-1 py-1">Stop</th>
+                                <th className="border px-1 py-1">Direction</th>
+                                <th className="border px-1 py-1">Transport Type</th>
+                                <th className="border px-1 py-1">Name</th>
                             </tr>
                         </thead>
                         <tbody className="text-center small">
                             {departures.map((departure, i) => (
                                 <tr key={i}>
-                                    <td>{departure.date} {departure.time}</td>
-                                    <td>{departure.stop}</td>
-                                    <td>{departure.direction}</td>
-                                    <td>{formatTransportTypes(departure.transportType)}</td>
-                                    <td>{departure.name}</td>
+                                    <td className="border px-1 py-1">{departure.date} {departure.time}</td>
+                                    <td className="border px-1 py-1">{departure.stop}</td>
+                                    <td className="border px-1 py-1">{departure.direction}</td>
+                                    <td className="border px-1 py-1">{formatTransportTypes(departure.transportType)}</td>
+                                    <td className="border px-1 py-1">{departure.name}</td>
                                 </tr>
                             ))}
                         </tbody>
