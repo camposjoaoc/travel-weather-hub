@@ -64,31 +64,31 @@ const SunriseSunset: React.FC = () => {
                     <table className="text-[0.85rem] w-full border border-gray-300 text-center ">
                         <tbody>
                             <tr className="border-t">
-                                <td className="border p-1 m-0 text-center font-semibold">🌅 Sunrise</td>
+                                        <td className="border p-1 m-0 text-center font-semibold  bg-gray-100 text-gray-700">🌅 Sunrise</td>
                                 <td className="border p-1 m-0">{sunData.sunrise}</td>
                             </tr>
                             <tr className="border-t">
-                                <td className="border p-1 m-0 text-center font-semibold">🟠 Golden Hour</td>
+                                        <td className="border p-1 m-0 text-center font-semibold  bg-gray-100 text-gray-700">🟠 Golden Hour</td>
                                 <td className="border p-1 m-0">{sunData.golden_hour}</td>
                             </tr>
                             <tr className="border-t">
-                                <td className="border p-1 m-0 text-center font-semibold">🌇 Sunset</td>
+                                        <td className="border p-1 m-0 text-center font-semibold  bg-gray-100 text-gray-700">🌇 Sunset</td>
                                 <td className="border p-1 m-0">{sunData.sunset}</td>
                             </tr>
                             <tr className="border-t">
-                                <td className="border p-1 m-0 text-center font-semibold">☀️ Solar Noon</td>
+                                        <td className="border p-1 m-0 text-center font-semibold  bg-gray-100 text-gray-700">☀️ Solar Noon</td>
                                 <td className="border p-1 m-0">{sunData.solar_noon}</td>
                             </tr>
                             <tr className="border-t">
-                                <td className="border p-1 m-0 text-center font-semibold">⏳ Day Length</td>
+                                        <td className="border p-1 m-0 text-center font-semibold  bg-gray-100 text-gray-700">⏳ Day Length</td>
                                 <td className="border p-1 m-0">{sunData.day_length}</td>
                             </tr>
                             <tr className="border-t">
-                                <td className="border p-1 m-0 text-center font-semibold">🌄 Dawn</td>
+                                        <td className="border p-1 m-0 text-center font-semibold  bg-gray-100 text-gray-700">🌄 Dawn</td>
                                 <td className="border p-1 m-0">{sunData.dawn}</td>
                             </tr>
                             <tr className="border-t">
-                                <td className="border p-1 m-0 text-center font-semibold">🌆 Dusk</td>
+                                        <td className="border p-1 m-0 text-center font-semibold  bg-gray-100 text-gray-700">🌆 Dusk</td>
                                 <td className="border p-1 m-0">{sunData.dusk}</td>
                             </tr>
                         </tbody>

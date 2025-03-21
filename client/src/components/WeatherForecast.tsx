@@ -57,7 +57,7 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ city }) => {
     }, [selectedCity]);
 
     return (
-        <div className="max-w-full overflow-x-auto ">
+        <div className="max-w-full overflow-x-auto p-5">
             {loading && <p className="text-center text-gray-500 text-sm">Loading...</p>}
             {error && <p className="text-red-500 text-center text-sm">{error}</p>}
             <div className="mt-1">
