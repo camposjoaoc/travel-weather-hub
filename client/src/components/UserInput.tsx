@@ -3,7 +3,11 @@ import React, { useState } from "react";
 
 //Images
 import logo from "../assets/img/logo.jpg";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { CLIENT_RENEG_LIMIT } from "tls";
+
+//style
+import "../styles/userInput.css"
 
 type UserInputProps = {
   onCityChange: (city: string) => void;
@@ -11,18 +15,18 @@ type UserInputProps = {
   setLongitude: (longitude: string) => void;
 };
 
-type addressResult = {
-  geometry: {
-    location: {
-      lat: number;
-      lng: number;
-    };
-  };
-};
+// type addressResult = {
+//   geometry: {
+//     location: {
+//       lat: number;
+//       lng: number;
+//     };
+//   };
+// };
 const UserInput: React.FC<UserInputProps> = ({ onCityChange, setLatitude, setLongitude }) => {
   const [search, setSearch] = useState<string>("");
-  const [addresses, setAddresses] = useState<addressResult | null>(null);
-  const [show, setShow] = useState<boolean>(false);
+  // const [addresses, setAddresses] = useState<addressResult | null>(null);
+  // const [show, setShow] = useState<boolean>(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
@@ -38,10 +42,10 @@ const UserInput: React.FC<UserInputProps> = ({ onCityChange, setLatitude, setLon
         const data = await response.json();
 
         console.log(data);
-        setAddresses(data.results[1]);
+        // setAddresses(data.results[1]);
         setLatitude(data.results[1].geometry.location.lat);
         setLongitude(data.results[1].geometry.location.lng);
-        setShow(true);
+        // setShow(true);
       } catch (error) {
 
         console.error("Error fetching data: ", error);
