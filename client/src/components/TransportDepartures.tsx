@@ -95,7 +95,7 @@ const TransportDepartures: React.FC<TransportDeparturesProps> = ({ latitude, lon
 
         return (
             <div className="container p-5">
-                <h4 className="text-center small">Transport Departures</h4>
+                <h4 className="font-sketch text-[1.5rem] text-center">Transport Departures</h4>
                 <div className="table-responsive weather-table-container" style={{
                     maxHeight: '230px',
                     maxWidth: '900px',

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { WeatherForecastData, WeatherForecastProps } from "../types/WeatherForecastData";
 
-const WeatherForecast: React.FC<WeatherForecastProps> = ({ city }) => {
+const WeatherForecast: React.FC<WeatherForecastProps> = ({ city, setLatitude,
+    setLongitude }) => {
     const [selectedCity, setSelectedCity] = useState<string | null>(null);
     const [forecast, setForecast] = useState<WeatherForecastData | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
@@ -43,37 +44,30 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ city }) => {
 
                     if (uniqueDays.size === 5) break;
                 }
-
                 setForecast({ ...response.data, list: filteredForecast });
                 setShowForecast(true);
-
-                localStorage.setItem("latitude", response.data.city.coord.lat);
-                localStorage.setItem("longitude", response.data.city.coord.lon);
-
-
+                setLatitude(response.data.city.coord.lat.toString());
+                setLongitude(response.data.city.coord.lon.toString());
             })
-            .catch(() => setError("City not found. Waiting for city..."))
+            .catch(() => setError("City not found. Please enter another one to continue."))
             .finally(() => setLoading(false));
     }, [selectedCity]);
 
     return (
-        <div className="max-w-full overflow-x-auto p-5">
+        <div className="container max-w-full overflow-x-auto p-4">
             {loading && <p className="text-center text-gray-500 text-sm">Loading...</p>}
             {error && <p className="text-red-500 text-center text-sm">{error}</p>}
-            <div className="mt-1">
+            <div>
                 <h3 className="font-sketch text-[1.5rem] text-center">Local Weather</h3>
-                <h4 className="text-[0.9rem] text-center">
-                    {selectedCity
-                        ? `Weather forecast for ${selectedCity.charAt(0).toUpperCase() + selectedCity.slice(1)}`
-                        : "Waiting for city..."}
-                </h4>
+            </div>
+            <div className="mt-1">
                 <div className="max-w-full overflow-x-auto">
-                    <table className="text-[0.85rem] w-full border border-gray-300 text-center text-xs leading-tight">
+                    <table className="text-[0.90rem] w-full border border-gray-300 text-center leading-tight p-0">
                         <thead className="bg-gray-100 text-gray-700">
                             <tr>
                                 <th className="border px-1 py-1">Day</th>
                                 <th className="border px-1 py-1">Temp(°C)</th>
-                                <th className="border px-2 py-1">Feels Like(°C)</th>
+                                <th className="border px-1 py-1">Feels(°C)</th>
                                 <th className="border px-1 py-1">Rain(mm)</th>
                                 <th className="border px-1 py-1">Weather</th>
                             </tr>
@@ -99,12 +93,19 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ city }) => {
                             ) : (
                                 <tr>
                                     <td colSpan={5} className="text-center text-gray-400 py-2">
-                                        Waiting for city...
+                                        Hang tight — weather info is on the way!
                                     </td>
                                 </tr>
                             )}
                         </tbody>
                     </table>
+                </div>
+                <div className="p-2">
+                    <h4 className="text-[1rem] text-center text-blue-400">
+                        {selectedCity
+                            ? `Weather forecast for ${selectedCity.charAt(0).toUpperCase() + selectedCity.slice(1)}`
+                            : "..."}
+                    </h4>
                 </div>
             </div>
         </div>
