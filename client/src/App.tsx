@@ -9,14 +9,9 @@ import TransportDepartures from "./components/TransportDepartures";
 
 function App() {
   const [city, setCity] = useState<string>("");
-
   const [latitude, setLatitude] = useState<string>("");
   const [longitude, setLongitude] = useState<string>("");
 
-  window.addEventListener("load", () => {
-    localStorage.removeItem("latitude");
-    localStorage.removeItem("longitude");
-  });
   return (
     <>
       <div className="container">
@@ -32,7 +27,7 @@ function App() {
           </div>
 
           <div className="container-box">
-            <WeatherForecast city={city} />
+            <WeatherForecast city={city} setLatitude={setLatitude} setLongitude={setLongitude} />
           </div>
         </section>
 
@@ -40,7 +35,7 @@ function App() {
         <section className="flex-container flex-container-reverse">
           <div className="container-box">
             {/* SunriseSunset here */}
-            <SunriseSunset />
+            <SunriseSunset latitude={latitude} longitude={longitude} city={city} />
           </div>
 
           <div className="container-box">
