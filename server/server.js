@@ -99,8 +99,8 @@ app.get("/sunrise-sunset", async (req, res) => {
 
 app.use(cors());
 
-const API_KEY = 'bc67eb1d6aa0423c9fa3f69f93349e30'; // Replace with your actual API key
-const API_URL = 'https://api.trafikinfo.trafikverket.se/v2/data.json';
+const API_KEY = process.env.TRAFICINCIDENT_API_KEY; // Replace with your actual API key
+const API_URL = process.env.TRAFICINCIDENT_API_URL;
 
 // Dynamic traffic endpoint with coordinates
 app.get('/api/traffic-incidents', async (req, res) => {
