@@ -38,7 +38,7 @@ const UserInput: React.FC<UserInputProps> = ({ onCityChange, setLatitude, setLon
     const location = async () => {
 
       try {
-        const response = await fetch(`http://localhost:8001/api/${search}`);
+        const response = await fetch(`http://localhost:8000/api/${search}`);
         const data = await response.json();
 
         console.log(data);

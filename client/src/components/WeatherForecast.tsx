@@ -28,7 +28,7 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ city, setLatitude,
         setError(null);
         setShowForecast(false);
 
-        axios.get(`http://localhost:8001/forecast?city=${selectedCity}`)
+        axios.get(`http://localhost:8000/forecast?city=${selectedCity}`)
             .then((response) => {
                 const forecasts = response.data.list;
                 const uniqueDays = new Set<string>();

@@ -43,7 +43,7 @@ const TrafficIncidentComponent: React.FC = () => {
 
       // Fetch traffic incidents using the coordinates from the server
       const response = await axios.get(
-        `http://localhost:8001/api/traffic-incidents?lat=${latitude}&lng=${longitude}`
+        `http://localhost:8000/api/traffic-incidents?lat=${latitude}&lng=${longitude}`
       );
 
       const incidents: TrafficIncident[] = response.data.Situations || [];
