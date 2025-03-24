@@ -1,0 +1,126 @@
+/* General body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+  
+  /* Container for the whole page */
+ 
+  
+  /* Title */
+  h1 {
+    font-size: 32px;
+    font-weight: 600;
+    color: #083a74;
+    margin-bottom: 20px;
+  }
+  
+  /* Input field styling */
+  input[type="text"] {
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    width: 300px;
+    margin-right: 10px;
+    transition: all 0.3s ease;
+  }
+  
+  /* Input field focus effect */
+  input[type="text"]:focus {
+    border-color: #4A90E2;
+    outline: none;
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+  }
+  
+  
+  /* Button styling */
+  button {
+    padding: 12px 25px;
+    background-color: #4A90E2;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  button:hover {
+    color:green;
+  }
+  
+  button:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+  }
+  
+  /* Error message styling */
+  .error {
+    color: #f44336;
+    font-size: 16px;
+    margin-top: 15px;
+  }
+  
+  /* Traffic incidents list */
+  .incidentList {
+    margin-top: 20px;
+    padding: 0;
+    list-style-type: none;
+  }
+  
+  /* Individual incident styling */
+  .incidentItem {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .incidentItem:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Incident title styling */
+  .incidentItem h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  /* Incident details styling */
+  .incidentItem p {
+    font-size: 16px;
+    color: #555;
+    margin: 5px 0;
+  }
+  
+  .incidentItem p strong {
+    color: #333;
+  }
+  
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    .container {
+      padding: 15px;
+    }
+  
+    input[type="text"] {
+      width: 80%;
+      margin-right: 0;
+      margin-bottom: 15px;
+    }
+  
+    button {
+      width: 100%;
+      padding: 15px;
+    }
+  }
+  

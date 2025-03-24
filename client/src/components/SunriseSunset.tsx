@@ -13,7 +13,7 @@ const SunriseSunset: React.FC<SunriseSunsetProps> = ({ latitude, longitude, city
         setLoading(true);
         setError(null);
         axios
-            .get(`http://localhost:8000/sunrise-sunset?lat=${latitude}&lng=${longitude}`)
+            .get(`http://localhost:8001/sunrise-sunset?lat=${latitude}&lng=${longitude}`)
             .then((res) => setSunData(res.data.results))
             .catch(() => setError("Oops! Something went wrong while loading the data"))
             .finally(() => setLoading(false));

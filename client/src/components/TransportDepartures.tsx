@@ -55,7 +55,7 @@ const TransportDepartures: React.FC<TransportDeparturesProps> = ({ latitude, lon
         setIsLoading(true);
         setError(null);
         console.log(latitude, longitude);
-        axios.get(`http://localhost:8000/transport-departures?lat=${latitude}&lng=${longitude}`)
+        axios.get(`http://localhost:8001/transport-departures?lat=${latitude}&lng=${longitude}`)
             .then((response) => {
                 const data = response.data;
                 setStopLocationName(data.stopLocationName);

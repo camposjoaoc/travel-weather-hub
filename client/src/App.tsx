@@ -3,7 +3,8 @@ import '../src/styles/App.css'
 import UserInput from './components/UserInput'
 import WeatherForecast from './components/WeatherForecast'
 import SunriseSunset from './components/SunriseSunset'
-import TrafficIncidents from './components/TrafficIncidents'
+import TrafficIncident from './components/TrafficIncidents'; // Import your TrafficIncident component
+import ErrorBoundary from './components/ErrorBoundry'; // Import the ErrorBoundary component
 import Footer from './components/Footer'
 import TransportDepartures from "./components/TransportDepartures";
 
@@ -40,7 +41,9 @@ function App() {
 
           <div className="container-box">
             {/* Traffic Updates Component here */}
-            <TrafficIncidents city={city} />
+            <ErrorBoundary>
+      <TrafficIncident />
+    </ErrorBoundary>
           </div>
         </section>
       </div>
