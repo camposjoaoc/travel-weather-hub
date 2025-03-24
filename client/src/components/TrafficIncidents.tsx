@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import "../styles/Traffic.css"
 
-interface TrafficIncidentComponentProps {
-  city: string;
-}
+
 interface TrafficIncident {
   description: string;
   severity: string;
@@ -98,8 +96,8 @@ const TrafficIncidentComponent: React.FC = () => {
                   index % 2 === 0
                     ? '#f0f8ff'
                     : index % 3 === 0
-                    ? '#ffeb3b' // Yellow color for every third incident
-                    : '#e0f7fa', // Default color
+                    ? '#ffeb3b' 
+                    : '#e0f7fa', 
               }}
             >
               <h3>{incident.description}</h3>
@@ -126,13 +124,13 @@ const TrafficIncidentComponent: React.FC = () => {
 };
 
 const styles: { [key: string]: React.CSSProperties } = {
-  container: { textAlign: 'center', padding: '20px', maxWidth: '800px', margin: '0 auto' },
-  input: { padding: '10px', fontSize: '16px', marginRight: '10px', width: '300px' },
-  button: { padding: '10px 20px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '5px' },
+  container: { textAlign: 'center', padding: '20px', maxWidth: '600px', margin: '0 auto' },
+  input: { padding: '10px', fontSize: '16px', marginRight: '10px', width: '200px' },
+  button: { padding: '10px 10px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '5px' },
   error: { color: 'red', marginTop: '10px' },
   incidentList: {
-    marginTop: '20px',
-    height: '400px', /* Set a fixed height for scrolling */
+    marginTop: '10px',
+    height: '150px', /* Set a fixed height for scrolling */
     overflowY: 'auto', /* Enable vertical scrolling */
     border: '1px solid #ddd',
     padding: '10px',
