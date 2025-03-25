@@ -97,7 +97,7 @@ app.get("/sunrise-sunset", async (req, res) => {
 
 
 
-app.use(cors());
+/*app.use(cors());
 
 const API_KEY = process.env.TRAFICINCIDENT_API_KEY; // Replace with your actual API key
 const API_URL = process.env.TRAFICINCIDENT_API_URL;
@@ -146,7 +146,7 @@ app.get('/api/traffic-incidents', async (req, res) => {
     res.status(500).send({ error: 'Failed to fetch traffic incidents' });
   }
 });
-
+*/
 
 
 //Resrobot API

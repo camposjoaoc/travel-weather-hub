@@ -3,8 +3,8 @@ import '../src/styles/App.css'
 import UserInput from './components/UserInput'
 import WeatherForecast from './components/WeatherForecast'
 import SunriseSunset from './components/SunriseSunset'
-import TrafficIncident from './components/TrafficIncidents'; // Import your TrafficIncident component
-import ErrorBoundary from './components/ErrorBoundry'; // Import the ErrorBoundary component
+import TrafficIncident from './components/TrafficIncidents'; 
+import ErrorBoundary from './components/ErrorBoundry'; 
 import Footer from './components/Footer'
 import TransportDepartures from "./components/TransportDepartures";
 
