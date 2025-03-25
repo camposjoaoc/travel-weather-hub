@@ -1,16 +1,13 @@
 /* General body styling */
-body {
+/*body {
     font-family: 'Arial', sans-serif;
     background-color: #f4f6f9;
     margin: 0;
     padding: 0;
     color: #333;
   }
-  
-  /* Container for the whole page */
- 
-  
-  /* Title */
+
+
   h1 {
     font-size: 20px;
     font-weight: 200;
@@ -18,7 +15,7 @@ body {
     margin-bottom: 05px;
   }
   
-  /* Input field styling */
+  
   input[type="text"] {
     padding: 12px;
     font-size: 16px;
@@ -29,7 +26,7 @@ body {
     transition: all 0.3s ease;
   }
   
-  /* Input field focus effect */
+  
   input[type="text"]:focus {
     border-color: #4A90E2;
     outline: none;
@@ -37,7 +34,7 @@ body {
   }
   
   
-  /* Button styling */
+ 
   button {
     padding: 12px 25px;
     background-color: #4A90E2;
@@ -58,21 +55,21 @@ body {
     cursor: not-allowed;
   }
   
-  /* Error message styling */
+  
   .error {
     color: #f44336;
     font-size: 16px;
     margin-top: 15px;
   }
   
-  /* Traffic incidents list */
+
   .incidentList {
     margin-top: 10px;
     padding: 0;
     list-style-type: none;
   }
   
-  /* Individual incident styling */
+  
   .incidentItem {
     background-color: #fff;
     padding: 20px;
@@ -87,7 +84,7 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   }
   
-  /* Incident title styling */
+ 
   .incidentItem h3 {
     font-size: 20px;
     font-weight: 600;
@@ -95,7 +92,7 @@ body {
     margin-bottom: 10px;
   }
   
-  /* Incident details styling */
+ 
   .incidentItem p {
     font-size: 16px;
     color: #555;
@@ -106,7 +103,7 @@ body {
     color: #333;
   }
   
-  /* Mobile responsiveness */
+  
   @media (max-width: 768px) {
     .container {
       padding: 15px;
@@ -122,5 +119,5 @@ body {
       width: 100%;
       padding: 15px;
     }
-  }
+  }*/
   
