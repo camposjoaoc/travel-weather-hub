@@ -6,15 +6,13 @@ const app = express();
 
 const cors = require("cors");
 
+const axios = require("axios");
+
 const corsOptions = {
   origin: ["http://localhost:5173"],
 };
 
 app.use(cors(corsOptions));
-
-app.use(cors());
-
-const axios = require("axios");
 
 //require('dotenv').config({ path: '../.env' });
 require("dotenv").config();
@@ -93,61 +91,39 @@ app.get("/sunrise-sunset", async (req, res) => {
   }
 });
 
-// API Key and URL for Trafikverket API
-
-
-
-/*app.use(cors());
-
-const API_KEY = process.env.TRAFICINCIDENT_API_KEY; // Replace with your actual API key
-const API_URL = process.env.TRAFICINCIDENT_API_URL;
-
-// Dynamic traffic endpoint with coordinates
-app.get('/api/traffic-incidents', async (req, res) => {
+app.get("/traffic-incidents", (req, res) => {
   const { lat, lng } = req.query;
 
   if (!lat || !lng) {
-    return res.status(400).json({ error: 'Missing coordinates (lat, lng)' });
+    return res.status(400).json({ error: "Missing coordinates" });
   }
 
-  const xmlData = `
-    <REQUEST>
-      <LOGIN authenticationkey="${API_KEY}" />
-      <QUERY objecttype="Situation" schemaversion="1" limit="10">
-        <FILTER>
-          <NEAR name="Deviation.Geometry.WGS84" value="${lng} ${lat}"/>
-        </FILTER>
-        <INCLUDE>Deviation.Message</INCLUDE>
-        <INCLUDE>Deviation.SeverityText</INCLUDE>
-        <INCLUDE>Deviation.LocationDescriptor</INCLUDE>
-        <INCLUDE>Deviation.StartTime</INCLUDE>
-        <INCLUDE>Deviation.EndTime</INCLUDE>  
-      </QUERY>
-    </REQUEST>
+  const xmlDataSituation = `
+  <REQUEST>
+    <LOGIN authenticationkey="${process.env.TRAFFIC_INCIDENT_API_KEY}"/>
+    <QUERY objecttype="Situation" schemaversion="1" limit="10">
+      <FILTER>
+        <NEAR name="Deviation.Geometry.WGS84" value="${lng} ${lat}"/>
+      </FILTER>
+    </QUERY>
+  </REQUEST>
   `;
 
-  try {
-    const response = await axios.post(API_URL, xmlData, {
-      headers: { 'Content-Type': 'text/xml' },
+  axios
+    .post(process.env.TRAFFIC_INCIDENT_API_URL, xmlDataSituation, {
+      headers: {
+        "Content-Type": "application/xml",
+      },
+    })
+    .then((response) => {
+      console.log("Response: ", response.data);
+      res.json(response.data);
+    })
+    .catch((error) => {
+      console.error("Error fetching data: ", error);
+      res.status(500).send("Failed to fetch data");
     });
-
-    // Parse the Trafikverket response
-    const result = response.data.RESPONSE.RESULT[0].Situation || [];
-    const incidents = result.map((situation) => ({
-      description: situation.Deviation[0]?.Message || 'No description',
-      severity: situation.Deviation[0]?.SeverityText || 'Unknown',
-      location: situation.Deviation[0]?.LocationDescriptor || 'Unknown',
-      timestamp: situation.Deviation[0]?.EndTime || 'Unknown', // 
-    }));
-
-    res.json({ Situations: incidents });
-  } catch (error) {
-    console.error('Error fetching traffic incidents:', error);
-    res.status(500).send({ error: 'Failed to fetch traffic incidents' });
-  }
 });
-*/
-
 
 //Resrobot API
 
@@ -165,21 +141,21 @@ app.get("/transport-departures", async (req, res) => {
     const responseNearByStops = await axios.get(
       `https://api.resrobot.se/v2.1/location.nearbystops?format=json&originCoordLat=${lat}&originCoordLong=${lng}&maxNo=1&accessId=${RESROBOT_API_KEY}`
     );
-    const stopLocationExtId = responseNearByStops.data.stopLocationOrCoordLocation[0].StopLocation.extId;
-    const stopLocationName = responseNearByStops.data.stopLocationOrCoordLocation[0].StopLocation.name;
+    const stopLocationExtId =
+      responseNearByStops.data.stopLocationOrCoordLocation[0].StopLocation
+        .extId;
+    const stopLocationName =
+      responseNearByStops.data.stopLocationOrCoordLocation[0].StopLocation.name;
 
     const responseDepartureBoard = await axios.get(
       `https://api.resrobot.se/v2.1/departureBoard?format=json&id=${stopLocationExtId}&maxJourneys=10&accessId=${RESROBOT_API_KEY}`
     );
     res.json({ stopLocationName, departureBoard: responseDepartureBoard.data });
   } catch (error) {
-    console.error(
-      "Error ",
-      error.response?.data || error.message
-    );
+    console.error("Error ", error.response?.data || error.message);
     res.status(500).json({ error: "Error - No data found" });
   }
 });
 
 // Start the server
-app.listen(8000, () => console.log(`backend server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`backend server running on port ${PORT}`));
