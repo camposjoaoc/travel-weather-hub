@@ -1,0 +1,4 @@
+# Project Progress Report  
+
+## Week 3  
+By this time, we had three working components (`userInput`, `WeatherForecast`, and `SunriseSunset`), though they still needed some design refinements. Meanwhile, team members Nikita and Pinar continued working on their components in separate projects. During this week, João suggested using the **Sunrise & Sunset API** as an additional feature in the project, which he then developed. At times, the code needed to be refactored due to some bugs. This week, there were also some issues where certain team members accidentally removed important configurations and styles from components. While unintentional, we suggested being extra careful and testing everything before pushing updates to GitHub. Most of these issues were identified by João and communicated to the team so that everyone was aware and could resolve them.  

@@ -1,0 +1,4 @@
+# Project Progress Report  
+
+## Week 1  
+We held a meeting, assigned tasks, and initially focused on gathering information about the APIs to be used in the project. João created the GitHub repository with the initial project setup (configurations, folders, and package dependencies). Additionally, he set up an agile board on Trello for project management, where he listed all necessary tasks for each team member and shared it with the team, requesting that everyone follow and work with the board, moving tasks according to the Scrum workflow. Mahmoud started developing his component, which would be the search bar responsible for converting the data as required. It was decided that we would use React, Express, Tailwind, and TypeScript for development.  
