@@ -1,11 +1,11 @@
 import { useState } from "react";
-import '../src/styles/App.css'
-import UserInput from './components/UserInput'
-import WeatherForecast from './components/WeatherForecast'
-import SunriseSunset from './components/SunriseSunset'
-import TrafficIncident from './components/TrafficIncidents'; // Import your TrafficIncident component
-import ErrorBoundary from './components/ErrorBoundry'; // Import the ErrorBoundary component
-import Footer from './components/Footer'
+import "../src/styles/App.css";
+import UserInput from "./components/UserInput";
+import WeatherForecast from "./components/WeatherForecast";
+import SunriseSunset from "./components/SunriseSunset";
+import TrafficIncident from "./components/TrafficIncidents"; // Import your TrafficIncident component
+import ErrorBoundary from "./components/ErrorBoundry"; // Import the ErrorBoundary component
+import Footer from "./components/Footer";
 import TransportDepartures from "./components/TransportDepartures";
 
 function App() {
@@ -18,7 +18,11 @@ function App() {
       <div className="container">
         {/* Section 1 - Logo & Input */}
         <section>
-          <UserInput onCityChange={setCity} setLatitude={setLatitude} setLongitude={setLongitude} />
+          <UserInput
+            onCityChange={setCity}
+            setLatitude={setLatitude}
+            setLongitude={setLongitude}
+          />
         </section>
         {/* Section 2 - Traffic & Weather Forecast */}
         <section className="flex-container flex-container-normal">
@@ -28,7 +32,11 @@ function App() {
           </div>
 
           <div className="container-box">
-            <WeatherForecast city={city} setLatitude={setLatitude} setLongitude={setLongitude} />
+            <WeatherForecast
+              city={city}
+              setLatitude={setLatitude}
+              setLongitude={setLongitude}
+            />
           </div>
         </section>
 
@@ -36,14 +44,18 @@ function App() {
         <section className="flex-container flex-container-reverse">
           <div className="container-box">
             {/* SunriseSunset here */}
-            <SunriseSunset latitude={latitude} longitude={longitude} city={city} />
+            <SunriseSunset
+              latitude={latitude}
+              longitude={longitude}
+              city={city}
+            />
           </div>
 
           <div className="container-box">
             {/* Traffic Updates Component here */}
             <ErrorBoundary>
-      <TrafficIncident />
-    </ErrorBoundary>
+              <TrafficIncident />
+            </ErrorBoundary>
           </div>
         </section>
       </div>
