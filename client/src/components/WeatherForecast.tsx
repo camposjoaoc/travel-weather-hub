@@ -53,6 +53,9 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ city, setLatitude,
             .finally(() => setLoading(false));
     }, [selectedCity]);
 
+    //If there is no city, it does not render anything.
+    if (!selectedCity) return null;
+
     return (
         <div className="container max-w-full overflow-x-auto p-4">
             {loading && <p className="text-center text-gray-500 text-sm">Loading...</p>}
