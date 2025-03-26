@@ -6,15 +6,14 @@ const app = express();
 
 const cors = require("cors");
 
+const axios = require("axios");
+
 const corsOptions = {
-  origin: ["http://localhost:5173"],
+  origin: ["http://localhost:5173", "http://localhost:5174"],
+
 };
 
 app.use(cors(corsOptions));
-
-app.use(cors());
-
-const axios = require("axios");
 
 //require('dotenv').config({ path: '../.env' });
 require("dotenv").config();
@@ -93,6 +92,7 @@ app.get("/sunrise-sunset", async (req, res) => {
   }
 });
 
+<<<<<<< HEAD
 // API Key and URL for Trafikverket API
 
 app.use(cors());
@@ -106,24 +106,27 @@ app.get("/api/traffic-incidents", async (req, res) => {
 
   if (!lat || !lng) {
     return res.status(400).json({ error: "Missing coordinates (lat, lng)" });
+=======
+app.get("/traffic-incidents", (req, res) => {
+  const { lat, lng } = req.query;
+
+  if (!lat || !lng) {
+    return res.status(400).json({ error: "Missing coordinates" });
+>>>>>>> f5ebea17abccc6cb577a1eff4394fa5bd0a6a67a
   }
 
-  const xmlData = `
-    <REQUEST>
-      <LOGIN authenticationkey="${API_KEY}" />
-      <QUERY objecttype="Situation" schemaversion="1" limit="10">
-        <FILTER>
-          <NEAR name="Deviation.Geometry.WGS84" value="${lng} ${lat}"/>
-        </FILTER>
-        <INCLUDE>Deviation.Message</INCLUDE>
-        <INCLUDE>Deviation.SeverityText</INCLUDE>
-        <INCLUDE>Deviation.LocationDescriptor</INCLUDE>
-        <INCLUDE>Deviation.StartTime</INCLUDE>
-        <INCLUDE>Deviation.EndTime</INCLUDE>  
-      </QUERY>
-    </REQUEST>
+  const xmlDataSituation = `
+  <REQUEST>
+    <LOGIN authenticationkey="${process.env.TRAFFIC_INCIDENT_API_KEY}"/>
+    <QUERY objecttype="Situation" schemaversion="1" limit="10">
+      <FILTER>
+        <NEAR name="Deviation.Geometry.WGS84" value="${lng} ${lat}"/>
+      </FILTER>
+    </QUERY>
+  </REQUEST>
   `;
 
+<<<<<<< HEAD
   try {
     const response = await axios.post(API_URL, xmlData, {
       headers: { "Content-Type": "text/xml" },
@@ -143,6 +146,23 @@ app.get("/api/traffic-incidents", async (req, res) => {
     console.error("Error fetching traffic incidents:", error);
     res.status(500).send({ error: "Failed to fetch traffic incidents" });
   }
+=======
+  axios
+    .post(process.env.TRAFFIC_INCIDENT_API_URL, xmlDataSituation, {
+      headers: {
+        "Content-Type": "application/xml",
+        
+      },
+    })
+    .then((response) => {
+      console.log("Response: ", response.data);
+      res.json(response.data);
+    })
+    .catch((error) => {
+      console.error("Error fetching data: ", error);
+      res.status(500).send("Failed to fetch data");
+    });
+>>>>>>> f5ebea17abccc6cb577a1eff4394fa5bd0a6a67a
 });
 
 //Resrobot API
@@ -178,4 +198,4 @@ app.get("/transport-departures", async (req, res) => {
 });
 
 // Start the server
-app.listen(8000, () => console.log(`backend server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`backend server running on port ${PORT}`));

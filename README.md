@@ -27,9 +27,9 @@ This project is a great opportunity to practice important **web development skil
 
 This project is being developed by:  
 - **João**  
-- **Mahmoud**  
-- **Pinar**  
+- **Mahmoud** 
 - **Nikita**  
+- **Pinar**  
 
 # 📌 Project Setup
 
@@ -37,18 +37,11 @@ This project is being developed by:
 ```bash
 git https://github.com/camposjoaoc/travel-weather-hub.git
 ```
-### Install dependencies  
+### Install dependencies  (both folders "server" and "client")
 ```bash
 npm install
 ```
-### Install Axios for API requests  
-```bash
-npm install axios
-```
-### Install Bootstrap
-```bash
-npm install bootstrap
-```
-### Start the development server  
+### Start the development server (both folders "server" and "client")
 ```bash
 npm run dev
+```
