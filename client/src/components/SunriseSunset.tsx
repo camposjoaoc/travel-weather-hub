@@ -19,6 +19,9 @@ const SunriseSunset: React.FC<SunriseSunsetProps> = ({ latitude, longitude, city
             .finally(() => setLoading(false));
     }, [latitude, longitude]);
 
+    //If there is no latitude or longitude, it does not render anything.
+    if (!latitude || !longitude) return null;
+
     return (
         <div className="max-w-[600px] mx-auto p-2.5">
             <h3 className="font-sketch text-[1.5rem] text-center mb-2">Sunrise & Sunset Times</h3>
