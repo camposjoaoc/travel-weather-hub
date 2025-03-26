@@ -1,6 +1,6 @@
 // server.js (Backend)
 
-import express from 'express';
+/*import express from 'express';
 import axios from 'axios';
 import cors from 'cors';
 
@@ -60,4 +60,4 @@ app.get('/api/traffic-incidents', async (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
-});
+});*/

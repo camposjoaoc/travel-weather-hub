@@ -7,6 +7,9 @@ interface TrafficIncident {
   severity: string;
   location: string;
   timestamp: string;
+  severityCode:number;
+  severityText:string;
+  IconId: string;
 }
 
 type TrafficIncidentsProps = {
@@ -33,17 +36,19 @@ const TrafficIncidentComponent = ({
         `http://localhost:8000/traffic-incidents?lat=${latitude}&lng=${longitude}`
       )
       .then((res) => {
-        debugger;
-        const deviations = res.data.RESPONSE.RESULT[0].Situation.map(
-          (situation) => situation.Deviation
+        
+        const deviations = (res.data.RESPONSE.RESULT[0].Situation || []).flatMap(
+          (situation: any) => situation.Deviation || []
         );
-        const trimmedDeviationInfo = deviations.map((deviation) => ({
-          iconId: deviation[0].IconId,
-          severityCode: deviation[0].SeverityCode,
-          severityText: deviation[0].SeverityText,
-          location: deviation[0].LocationDescriptor,
-          timestamp: deviation[0].CreationTime,
+        const trimmedDeviationInfo = deviations.map((deviation: any) => ({
+          description: deviation.Description || deviation.LocationDescriptor || "No description",
+          iconId: deviation.IconId,
+          severityCode: deviation.SeverityCode,
+          severityText: deviation.SeverityText,
+          location: deviation.LocationDescriptor,
+          timestamp: deviation.CreationTime,
         }));
+        
         setTrafficIncidents(trimmedDeviationInfo);
       })
       .catch(() =>
@@ -51,6 +56,7 @@ const TrafficIncidentComponent = ({
       )
       .finally(() => setLoading(false));
   }, [latitude, longitude]);
+ 
 
   // Function to get color based on severity
   const getSeverityColor = (severityCode: number): string => {
@@ -120,7 +126,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   container: {
     textAlign: "center",
     padding: "20px",
-    maxWidth: "800px",
+    maxWidth: "700px",
     margin: "0 auto",
   },
   input: {
@@ -139,7 +145,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   error: { color: "red", marginTop: "10px" },
   incidentList: {
     marginTop: "20px",
-    height: "400px" /* Set a fixed height for scrolling */,
+    height: "200px" /* Set a fixed height for scrolling */,
     overflowY: "auto" /* Enable vertical scrolling */,
     border: "1px solid #ddd",
     padding: "10px",

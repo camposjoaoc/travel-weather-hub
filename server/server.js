@@ -9,7 +9,8 @@ const cors = require("cors");
 const axios = require("axios");
 
 const corsOptions = {
-  origin: ["http://localhost:5173"],
+  origin: ["http://localhost:5173", "http://localhost:5174"],
+
 };
 
 app.use(cors(corsOptions));
@@ -113,6 +114,7 @@ app.get("/traffic-incidents", (req, res) => {
     .post(process.env.TRAFFIC_INCIDENT_API_URL, xmlDataSituation, {
       headers: {
         "Content-Type": "application/xml",
+        
       },
     })
     .then((response) => {
