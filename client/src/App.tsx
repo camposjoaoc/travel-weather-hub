@@ -3,13 +3,8 @@ import "../src/styles/App.css";
 import UserInput from "./components/UserInput";
 import WeatherForecast from "./components/WeatherForecast";
 import SunriseSunset from "./components/SunriseSunset";
-<<<<<<< HEAD
 import TrafficIncident from "./components/TrafficIncidents"; // Import your TrafficIncident component
 import ErrorBoundary from "./components/ErrorBoundry"; // Import the ErrorBoundary component
-=======
-import TrafficIncident from "./components/TrafficIncidents";
-import ErrorBoundary from "./components/ErrorBoundry";
->>>>>>> f5ebea17abccc6cb577a1eff4394fa5bd0a6a67a
 import Footer from "./components/Footer";
 import TransportDepartures from "./components/TransportDepartures";
 
@@ -59,11 +54,7 @@ function App() {
           <div className="container-box">
             {/* Traffic Updates Component here */}
             <ErrorBoundary>
-<<<<<<< HEAD
               <TrafficIncident />
-=======
-              <TrafficIncident latitude={latitude} longitude={longitude} />
->>>>>>> f5ebea17abccc6cb577a1eff4394fa5bd0a6a67a
             </ErrorBoundary>
           </div>
         </section>

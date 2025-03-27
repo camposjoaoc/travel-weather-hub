@@ -14,16 +14,23 @@
   margin: auto;
 }
 .searchInput {
-  border: 2px solid lightgray;
+  border-radius: 5px;
+  /* border: 2px solid lightgray; */
   max-width: 600px;
   width: 100%;
   font-family: "Oxygen";
+  text-align: center;
+
 }
 .searchBtn {
-  height: 42px;
+  /* height: 42px; */
   position: absolute;
   right: 0;
+  bottom: 5px;
+  font-size: 40px;
   font-family: "Oxygen";
+  cursor: pointer;
+
 }
 .map,
 .iframe {

@@ -92,7 +92,6 @@ app.get("/sunrise-sunset", async (req, res) => {
   }
 });
 
-<<<<<<< HEAD
 // API Key and URL for Trafikverket API
 
 app.use(cors());
@@ -106,13 +105,6 @@ app.get("/api/traffic-incidents", async (req, res) => {
 
   if (!lat || !lng) {
     return res.status(400).json({ error: "Missing coordinates (lat, lng)" });
-=======
-app.get("/traffic-incidents", (req, res) => {
-  const { lat, lng } = req.query;
-
-  if (!lat || !lng) {
-    return res.status(400).json({ error: "Missing coordinates" });
->>>>>>> f5ebea17abccc6cb577a1eff4394fa5bd0a6a67a
   }
 
   const xmlDataSituation = `
@@ -126,7 +118,6 @@ app.get("/traffic-incidents", (req, res) => {
   </REQUEST>
   `;
 
-<<<<<<< HEAD
   try {
     const response = await axios.post(API_URL, xmlData, {
       headers: { "Content-Type": "text/xml" },
@@ -146,23 +137,6 @@ app.get("/traffic-incidents", (req, res) => {
     console.error("Error fetching traffic incidents:", error);
     res.status(500).send({ error: "Failed to fetch traffic incidents" });
   }
-=======
-  axios
-    .post(process.env.TRAFFIC_INCIDENT_API_URL, xmlDataSituation, {
-      headers: {
-        "Content-Type": "application/xml",
-        
-      },
-    })
-    .then((response) => {
-      console.log("Response: ", response.data);
-      res.json(response.data);
-    })
-    .catch((error) => {
-      console.error("Error fetching data: ", error);
-      res.status(500).send("Failed to fetch data");
-    });
->>>>>>> f5ebea17abccc6cb577a1eff4394fa5bd0a6a67a
 });
 
 //Resrobot API

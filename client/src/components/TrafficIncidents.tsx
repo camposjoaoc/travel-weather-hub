@@ -7,8 +7,8 @@ interface TrafficIncident {
   severity: string;
   location: string;
   timestamp: string;
-  severityCode:number;
-  severityText:string;
+  severityCode: number;
+  severityText: string;
   IconId: string;
 }
 
@@ -36,19 +36,21 @@ const TrafficIncidentComponent = ({
         `http://localhost:8000/traffic-incidents?lat=${latitude}&lng=${longitude}`
       )
       .then((res) => {
-        
-        const deviations = (res.data.RESPONSE.RESULT[0].Situation || []).flatMap(
-          (situation: any) => situation.Deviation || []
-        );
+        const deviations = (
+          res.data.RESPONSE.RESULT[0].Situation || []
+        ).flatMap((situation: any) => situation.Deviation || []);
         const trimmedDeviationInfo = deviations.map((deviation: any) => ({
-          description: deviation.Description || deviation.LocationDescriptor || "No description",
+          description:
+            deviation.Description ||
+            deviation.LocationDescriptor ||
+            "No description",
           iconId: deviation.IconId,
           severityCode: deviation.SeverityCode,
           severityText: deviation.SeverityText,
           location: deviation.LocationDescriptor,
           timestamp: deviation.CreationTime,
         }));
-        
+
         setTrafficIncidents(trimmedDeviationInfo);
       })
       .catch(() =>
@@ -56,7 +58,9 @@ const TrafficIncidentComponent = ({
       )
       .finally(() => setLoading(false));
   }, [latitude, longitude]);
- 
+
+  //If there is no latitude or longitude, it does not render anything.
+  if (!latitude || !longitude) return null;
 
   // Function to get color based on severity
   const getSeverityColor = (severityCode: number): string => {
@@ -170,5 +174,3 @@ const styles: { [key: string]: React.CSSProperties } = {
 };
 
 export default TrafficIncidentComponent;
-
-
