@@ -41,7 +41,7 @@ function App() {
         </section>
 
         {/* Section 3 - SunriseSunset & Traffic Updates */}
-        <section className="flex-container flex-container-reverse">
+        <section className="flex-container flex-container-reverse mt-7 pt-7">
           <div className="container-box">
             {/* SunriseSunset here */}
             <SunriseSunset

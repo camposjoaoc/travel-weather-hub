@@ -44,7 +44,6 @@ const TransportDepartures: React.FC<TransportDeparturesProps> = ({
   latitude,
   longitude,
 }) => {
-  console.log(latitude, longitude);
   const [departures, setDepartures] = useState<Departure[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -56,7 +55,6 @@ const TransportDepartures: React.FC<TransportDeparturesProps> = ({
   const fetchDepartures = async () => {
     setIsLoading(true);
     setError(null);
-    console.log(latitude, longitude);
     axios
       .get(
         `http://localhost:8000/transport-departures?lat=${latitude}&lng=${longitude}`
@@ -91,14 +89,14 @@ const TransportDepartures: React.FC<TransportDeparturesProps> = ({
   } else if (error) {
     return (
       <div className="container">
-        <h4 className="text-center small">Transport Departures</h4>
+        <h4 style={{ color: '#ffffff' }} className="text-center small">Transport Departures</h4>
         <p className="text-danger text-center small">{error}</p>
       </div>
     );
   } else if (departures.length === 0) {
     return (
       <div className="container">
-        <h4 className="text-center small">Transport Departures</h4>
+        <h4 style={{ color: '#ffffff' }} className="text-center small">Transport Departures</h4>
         <p className="text-danger text-center small">
           No departures found from {stopLocationName}
         </p>
@@ -107,7 +105,7 @@ const TransportDepartures: React.FC<TransportDeparturesProps> = ({
   } else {
     return (
       <div className="container p-5">
-        <h4 className="font-sketch text-[1.5rem] text-center">
+        <h4 style={{ color: '#ffffff' }} className="font-sketch text-[1.5rem] text-center">
           Transport Departures
         </h4>
         <div
