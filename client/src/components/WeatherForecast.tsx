@@ -57,7 +57,7 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ city, setLatitude,
     if (!selectedCity) return null;
 
     return (
-        <div className="container max-w-full overflow-x-auto p-4">
+        <div className="container max-w-full overflow-x-auto p-4 bg-white rounded-lg">
             {loading && <p className="text-center text-gray-500 text-sm">Loading...</p>}
             {error && <p className="text-red-500 text-center text-sm">{error}</p>}
             <div>
@@ -66,7 +66,7 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ city, setLatitude,
             <div className="mt-1">
                 <div className="max-w-full overflow-x-auto">
                     <table className="text-[0.90rem] w-full border border-gray-300 text-center leading-tight p-0">
-                        <thead className="bg-gray-100 text-gray-700">
+                        <thead className="bg-[rgb(176,242,213)] text-gray-700">
                             <tr>
                                 <th className="border px-1 py-1">Day</th>
                                 <th className="border px-1 py-1">Temp(°C)</th>
@@ -104,7 +104,7 @@ const WeatherForecast: React.FC<WeatherForecastProps> = ({ city, setLatitude,
                     </table>
                 </div>
                 <div className="p-2">
-                    <h4 className="text-[1rem] text-center text-blue-400">
+                    <h4 className="text-[1rem] text-center text-[rgb(37,136,93)]">
                         {selectedCity
                             ? `Weather forecast for ${selectedCity.charAt(0).toUpperCase() + selectedCity.slice(1)}`
                             : "..."}

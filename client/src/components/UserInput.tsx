@@ -68,7 +68,7 @@ const UserInput: React.FC<UserInputProps> = ({
             {/* Local Travel & Weather Dashboard */}
           </h1>
           <input
-            className="searchInput w-[500px] h-[42px]  "
+            className="searchInput bg-[rgb(176,242,213)] border-[1.5px] border-[rgb(120,200,170)] rounded-lg w-[500px] h-[50px]"
             onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
               if (e.key === "Enter") {
                 handleSearchClick();
@@ -78,7 +78,7 @@ const UserInput: React.FC<UserInputProps> = ({
             placeholder="Enter an address, country, city"
             onChange={handleInputChange}
           />
-          <IoSearchOutline className="searchBtn" onClick={handleSearchClick} />
+          <IoSearchOutline className="searchBtn mr-4 transition-transform duration-200 transform hover:-translate-y-1 hover:scale-105 cursor-pointer" onClick={handleSearchClick} />
 
           {/* <button
             className="bg-gray-100 px-4 py-2 text-gray hover:bg-white-100 sm:px-8 sm:py-3  rounded-full searchBtn"

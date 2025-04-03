@@ -88,15 +88,15 @@ const TransportDepartures: React.FC<TransportDeparturesProps> = ({
     return <p className="text-center text-secondary small">Loading...</p>;
   } else if (error) {
     return (
-      <div className="container">
-        <h4 style={{ color: '#ffffff' }} className="text-center small">Transport Departures</h4>
+      <div className="container bg-white rounded-lg">
+        <h4 style={{ color: '#000000' }} className="text-center small">Transport Departures</h4>
         <p className="text-danger text-center small">{error}</p>
       </div>
     );
   } else if (departures.length === 0) {
     return (
-      <div className="container">
-        <h4 style={{ color: '#ffffff' }} className="text-center small">Transport Departures</h4>
+      <div className="container bg-white rounded-lg">
+        <h4 style={{ color: '#000000' }} className="text-center small">Transport Departures</h4>
         <p className="text-danger text-center small">
           No departures found from {stopLocationName}
         </p>
@@ -104,8 +104,8 @@ const TransportDepartures: React.FC<TransportDeparturesProps> = ({
     );
   } else {
     return (
-      <div className="container p-5">
-        <h4 style={{ color: '#ffffff' }} className="font-sketch text-[1.5rem] text-center">
+      <div className="container p-5 bg-white rounded-lg">
+        <h4 style={{ color: '#000000' }} className="font-sketch text-[1.5rem] text-center">
           Transport Departures
         </h4>
         <div
@@ -121,27 +121,28 @@ const TransportDepartures: React.FC<TransportDeparturesProps> = ({
             className="table table-sm table-striped table-bordered text-nowrap weather-table"
             style={{ width: "100%" }}
           >
-            <thead className="text-center small bg-gray-100 text-gray-700">
+            <thead className="text-center small bg-[rgb(176,242,213)] text-gray-700">
               <tr>
-                <th className="border px-1 py-1">Departure Date-Time</th>
-                <th className="border px-1 py-1">Stop</th>
-                <th className="border px-1 py-1">Direction</th>
+                <th className="border px-1 py-1">From</th>
+                <th className="border px-1 py-1">To</th>
+                <th className="border px-1 py-1">Platform</th>
+                <th className="border px-1 py-1">Departure Time</th>
                 <th className="border px-1 py-1">Transport Type</th>
-                <th className="border px-1 py-1">Name</th>
               </tr>
             </thead>
             <tbody className="text-center small">
               {departures.map((departure, i) => (
                 <tr key={i}>
-                  <td className="border px-1 py-1">
-                    {departure.date} {departure.time}
-                  </td>
-                  <td className="border px-1 py-1">{departure.stop}</td>
                   <td className="border px-1 py-1">{departure.direction}</td>
+                  <td className="border px-1 py-1">{departure.stop}</td>
+                  <td className="border px-1 py-1">{departure.name}</td>
+                  <td className="border px-1 py-1">
+                    {departure.time}
+                  </td>
                   <td className="border px-1 py-1">
                     {formatTransportTypes(departure.transportType)}
                   </td>
-                  <td className="border px-1 py-1">{departure.name}</td>
+                  
                 </tr>
               ))}
             </tbody>
