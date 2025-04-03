@@ -64,8 +64,8 @@ const UserInput: React.FC<UserInputProps> = ({
       <div className="inputAndBtnAndLogo flex">
         {/* <img className="w-[150px] logo" src={logo} /> */}
         <div className="relative self-center inputAndBtn">
-          <h1 className="text-[24px] text-center self-center heading">
-            {/* Local Travel & Weather Dashboard */}
+          <h1 className="text-[34px] text-center self-center heading">
+            Where do you want to travel?
           </h1>
           <input
             className="searchInput bg-[rgb(176,242,213)] border-[1.5px] border-[rgb(120,200,170)] rounded-lg w-[500px] h-[50px]"
