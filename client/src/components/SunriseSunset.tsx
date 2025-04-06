@@ -23,7 +23,7 @@ const SunriseSunset: React.FC<SunriseSunsetProps> = ({ latitude, longitude, city
     if (!latitude || !longitude) return null;
 
     return (
-        <div className="max-w-[600px] mx-auto p-2.5 bg-white rounded-lg">
+        <div className="w-[500px] max-w-[900px] mx-auto p-2.5 bg-white rounded-lg">
             <h3 className="font-sketch text-[1.5rem] text-center mb-2 ">Sunrise & Sunset Times</h3>
 
             {error && <p className="text-red-500 text-center text-sm">{error}</p>}
