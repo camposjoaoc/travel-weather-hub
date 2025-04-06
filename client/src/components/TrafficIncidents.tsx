@@ -132,6 +132,8 @@ const styles: { [key: string]: React.CSSProperties } = {
     padding: "20px",
     maxWidth: "700px",
     margin: "0 auto",
+    backgroundColor: "white",
+    borderRadius: "10px",
   },
   input: {
     padding: "10px",
@@ -154,7 +156,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     border: "1px solid #ddd",
     padding: "10px",
     borderRadius: "5px",
-    backgroundColor: "aqua",
+    backgroundColor: "rgb(176,242,213)",
     display: "flex",
     flexDirection: "column" /* Stack incidents vertically */,
   },

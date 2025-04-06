@@ -54,7 +54,7 @@ function App() {
           <div className="container-box">
             {/* Traffic Updates Component here */}
             <ErrorBoundary>
-              <TrafficIncident />
+              <TrafficIncident latitude={latitude} longitude={longitude} />
             </ErrorBoundary>
           </div>
         </section>
